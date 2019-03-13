@@ -1,0 +1,13 @@
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\bin\Debug\DBProject.exe.config
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\bin\Debug\DBProject.exe
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\bin\Debug\DBProject.pdb
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.csprojAssemblyReference.cache
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.Properties.Resources.resources
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.csproj.GenerateResource.cache
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.csproj.CoreCompileInputs.cache
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.exe
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.pdb
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.MainPage.resources
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.AddStudent.resources
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.EditStudent.resources
+C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.ViewStudent.resources
