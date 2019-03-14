@@ -31,7 +31,16 @@ namespace DBProject
         Student std = new Student();
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Do you really want to exit this form?");
+            txtSFname.Clear();
+            txtSLname.Clear();
+            txtSemail.Clear();
+            txtSRno.Clear();
+            txtScontact.Clear();
 
+            MainPage s = new MainPage();
+            this.Hide();
+            s.Show();
         }
 
         private void EditStudent_Load(object sender, EventArgs e)
@@ -91,6 +100,101 @@ namespace DBProject
                 ViewStudent vs = new ViewStudent();
                 vs.Show();
             }
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblSFname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSFname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSLname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSLname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblScontact_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtScontact_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSEmail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSemail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblrno_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSRno_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSstatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

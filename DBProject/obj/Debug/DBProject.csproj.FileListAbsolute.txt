@@ -11,3 +11,6 @@ C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.MainPage
 C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.AddStudent.resources
 C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.EditStudent.resources
 C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.ViewStudent.resources
+C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.AddCLO.resources
+C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.EditCLO.resources
+C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.ViewCLO.resources

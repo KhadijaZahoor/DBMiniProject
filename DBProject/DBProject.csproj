@@ -46,13 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCLO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCLO.Designer.cs">
+      <DependentUpon>AddCLO.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="CLO.cs" />
     <Compile Include="DataConnection.cs" />
+    <Compile Include="EditCLO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCLO.Designer.cs">
+      <DependentUpon>EditCLO.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditStudent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,14 +81,26 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="ViewCLO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewCLO.Designer.cs">
+      <DependentUpon>ViewCLO.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewStudent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewStudent.Designer.cs">
       <DependentUpon>ViewStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCLO.resx">
+      <DependentUpon>AddCLO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCLO.resx">
+      <DependentUpon>EditCLO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditStudent.resx">
       <DependentUpon>EditStudent.cs</DependentUpon>
@@ -93,6 +118,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ViewCLO.resx">
+      <DependentUpon>ViewCLO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewStudent.resx">
       <DependentUpon>ViewStudent.cs</DependentUpon>
     </EmbeddedResource>

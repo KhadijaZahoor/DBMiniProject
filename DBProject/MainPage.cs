@@ -31,5 +31,19 @@ namespace DBProject
             this.Hide();
             frm.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddCLO frm = new AddCLO();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ViewCLO frm = new ViewCLO();
+            this.Hide();
+            frm.Show();
+        }
     }
 }

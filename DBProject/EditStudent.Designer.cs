@@ -71,6 +71,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(753, 94);
             this.tableLayoutPanel3.TabIndex = 3;
+            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // label1
             // 
@@ -84,6 +85,7 @@
             this.label1.Size = new System.Drawing.Size(596, 94);
             this.label1.TabIndex = 2;
             this.label1.Text = "Student Assessment Inlet";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox1
             // 
@@ -97,6 +99,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel1
             // 
@@ -107,6 +110,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(753, 67);
             this.panel1.TabIndex = 4;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label2
             // 
@@ -120,6 +124,7 @@
             this.label2.Size = new System.Drawing.Size(243, 41);
             this.label2.TabIndex = 0;
             this.label2.Text = "EDIT STUDENT";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel2
             // 
@@ -129,6 +134,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(753, 303);
             this.panel2.TabIndex = 5;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // tableLayoutPanel1
             // 
@@ -168,6 +174,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 303);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // lblSFname
             // 
@@ -178,6 +185,7 @@
             this.lblSFname.Size = new System.Drawing.Size(131, 32);
             this.lblSFname.TabIndex = 1;
             this.lblSFname.Text = "First Name";
+            this.lblSFname.Click += new System.EventHandler(this.lblSFname_Click);
             // 
             // txtSFname
             // 
@@ -187,6 +195,7 @@
             this.txtSFname.Name = "txtSFname";
             this.txtSFname.Size = new System.Drawing.Size(170, 20);
             this.txtSFname.TabIndex = 7;
+            this.txtSFname.TextChanged += new System.EventHandler(this.txtSFname_TextChanged);
             // 
             // lblSLname
             // 
@@ -197,6 +206,7 @@
             this.lblSLname.Size = new System.Drawing.Size(130, 32);
             this.lblSLname.TabIndex = 8;
             this.lblSLname.Text = "Last Name";
+            this.lblSLname.Click += new System.EventHandler(this.lblSLname_Click);
             // 
             // txtSLname
             // 
@@ -206,6 +216,7 @@
             this.txtSLname.Name = "txtSLname";
             this.txtSLname.Size = new System.Drawing.Size(170, 20);
             this.txtSLname.TabIndex = 9;
+            this.txtSLname.TextChanged += new System.EventHandler(this.txtSLname_TextChanged);
             // 
             // lblScontact
             // 
@@ -216,6 +227,7 @@
             this.lblScontact.Size = new System.Drawing.Size(98, 32);
             this.lblScontact.TabIndex = 10;
             this.lblScontact.Text = "Contact";
+            this.lblScontact.Click += new System.EventHandler(this.lblScontact_Click);
             // 
             // txtScontact
             // 
@@ -225,6 +237,7 @@
             this.txtScontact.Name = "txtScontact";
             this.txtScontact.Size = new System.Drawing.Size(170, 20);
             this.txtScontact.TabIndex = 11;
+            this.txtScontact.TextChanged += new System.EventHandler(this.txtScontact_TextChanged);
             // 
             // lblSEmail
             // 
@@ -235,6 +248,7 @@
             this.lblSEmail.Size = new System.Drawing.Size(74, 32);
             this.lblSEmail.TabIndex = 12;
             this.lblSEmail.Text = "Email";
+            this.lblSEmail.Click += new System.EventHandler(this.lblSEmail_Click);
             // 
             // txtSemail
             // 
@@ -244,6 +258,7 @@
             this.txtSemail.Name = "txtSemail";
             this.txtSemail.Size = new System.Drawing.Size(170, 20);
             this.txtSemail.TabIndex = 13;
+            this.txtSemail.TextChanged += new System.EventHandler(this.txtSemail_TextChanged);
             // 
             // lblrno
             // 
@@ -254,6 +269,7 @@
             this.lblrno.Size = new System.Drawing.Size(235, 32);
             this.lblrno.TabIndex = 14;
             this.lblrno.Text = "Registration Number";
+            this.lblrno.Click += new System.EventHandler(this.lblrno_Click);
             // 
             // txtSRno
             // 
@@ -263,6 +279,7 @@
             this.txtSRno.Name = "txtSRno";
             this.txtSRno.Size = new System.Drawing.Size(170, 20);
             this.txtSRno.TabIndex = 15;
+            this.txtSRno.TextChanged += new System.EventHandler(this.txtSRno_TextChanged);
             // 
             // lblSstatus
             // 
@@ -273,6 +290,7 @@
             this.lblSstatus.Size = new System.Drawing.Size(80, 32);
             this.lblSstatus.TabIndex = 16;
             this.lblSstatus.Text = "Status";
+            this.lblSstatus.Click += new System.EventHandler(this.lblSstatus_Click);
             // 
             // txtSStatus
             // 
@@ -286,6 +304,7 @@
             this.txtSStatus.Name = "txtSStatus";
             this.txtSStatus.Size = new System.Drawing.Size(170, 21);
             this.txtSStatus.TabIndex = 17;
+            this.txtSStatus.SelectedIndexChanged += new System.EventHandler(this.txtSStatus_SelectedIndexChanged);
             // 
             // btnEditS
             // 
