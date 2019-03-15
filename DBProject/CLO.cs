@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBProject
 {
+    /// <summary>
+    /// This class of CLO contains specific Attributes according to the database CLO table
+    /// </summary>
     class CLO
     {
         private int id;

@@ -16,18 +16,10 @@ namespace DBProject
         public ViewStudent()
         {
             InitializeComponent();
-            DataConnection.get_instance().connectionstring = "Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True";
-            try
-            {
-                var con = DataConnection.get_instance().Getconnection();
-                con.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
+        //buttons to be added in DataGridView
         DataGridViewButtonColumn buttonE = new DataGridViewButtonColumn();
         DataGridViewButtonColumn buttonD = new DataGridViewButtonColumn();
         public static string id;
@@ -36,10 +28,19 @@ namespace DBProject
 
         }
 
+        /// <summary>
+        /// Show the list of students in dataGridView From database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewStudent_Load(object sender, EventArgs e)
         {
+            //Get the data from student table in database
             SqlDataReader reader = DataConnection.get_instance().Getdata("SELECT * FROM Student");
+
+            //crete new list of student class type
             List<Student> student = new List<Student>();
+            //add the student data in student list
             while (reader.Read())
             {
                 Student std = new Student();
@@ -52,6 +53,7 @@ namespace DBProject
                 std.Status = Convert.ToInt32(reader.GetValue(6));
                 student.Add(std);
             }
+            //add button on runtime in dataGridView
             buttonE.Name = "btnEdit";
             buttonE.Text = "EDIT";
             buttonE.UseColumnTextForButtonValue = true;
@@ -65,8 +67,14 @@ namespace DBProject
             dataGridView1.Columns.Add(buttonD);
         }
 
+        /// <summary>
+        /// Do specific tasks on click of buttons in data grid view 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //on edit click move to student edit form
             if (dataGridView1.Columns[e.ColumnIndex].Name == "btnEdit")
             {
                 DataGridViewRow edit = dataGridView1.Rows[e.RowIndex];
@@ -75,6 +83,7 @@ namespace DBProject
                 this.Hide();
                 f.Show();
             }
+            //Deleting specific student
             if (dataGridView1.Columns[e.ColumnIndex].Name == "btnDelete")
             {
                 DataGridViewRow delete = dataGridView1.Rows[e.RowIndex];
@@ -89,6 +98,11 @@ namespace DBProject
             }
         }
 
+        /// <summary>
+        /// show add student form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             AddStudent frm = new AddStudent();
@@ -97,6 +111,11 @@ namespace DBProject
 
         }
 
+        /// <summary>
+        /// move to home page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Do you really want to exit this form?");

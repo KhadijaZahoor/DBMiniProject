@@ -16,19 +16,17 @@ namespace DBProject
         public EditStudent()
         {
             InitializeComponent();
-            DataConnection.get_instance().connectionstring = "Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True";
-            try
-            {
-                var con = DataConnection.get_instance().Getconnection();
-                con.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
+        //new object of student
         Student std = new Student();
+
+        /// <summary>
+        /// open main page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Do you really want to exit this form?");
@@ -43,6 +41,11 @@ namespace DBProject
             s.Show();
         }
 
+        /// <summary>
+        /// Show data of student in textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditStudent_Load(object sender, EventArgs e)
         {
             if (ViewStudent.id != null)
@@ -72,9 +75,51 @@ namespace DBProject
             }
         }
 
+        /// <summary>
+        /// Edit the data of student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEditS_Click(object sender, EventArgs e)
         {
-            if (ViewStudent.id != null)
+            bool condition = true;
+            if (txtSFname.Text == "" || txtSLname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "" || txtSRno.Text == "" || txtSStatus.Text == "")
+            {
+                MessageBox.Show("Boxes should not be empty");
+                condition = false;
+            }
+            else
+            {
+                try
+                {
+                    std.FirstName = txtSFname.Text;
+                }
+                catch (Exception)
+                {
+                    condition = false;
+                    MessageBox.Show("First Name should be in alphabets");
+                }
+                try
+                {
+                    std.LastName = txtSLname.Text;
+                }
+                catch (Exception)
+                {
+                    condition = false;
+                    MessageBox.Show("Last Name should be in alphabets");
+                }
+                try
+                {
+                    std.Email = txtSemail.Text;
+                }
+                catch (Exception)
+                {
+                    condition = false;
+                    MessageBox.Show("Email cannot contian spaces");
+                }
+            }
+
+            if (ViewStudent.id != null && condition == true)
             {
                 std.FirstName = txtSFname.Text;
                 std.LastName = txtSLname.Text;
@@ -82,8 +127,10 @@ namespace DBProject
                 std.Email = txtSemail.Text;
                 std.RegistrationNo = txtSRno.Text;
 
+                //getting values from lookUp table in database
                 SqlDataReader status = DataConnection.get_instance().Getdata("SELECT * FROM Lookup");
 
+                //check the values in textbox with lookup table name column an assign specific id accordingly
                 while (status.Read())
                 {
                     if (status[1].ToString() == txtSStatus.Text)
@@ -92,10 +139,12 @@ namespace DBProject
                     }
                 }
 
+                //Update the data of the student
                 string cmd = string.Format("UPDATE Student SET FirstName='{0}',LastName='{1}',Contact='{2}',Email='{3}',RegistrationNumber='{4}',Status='{5}' WHERE Id='{6}'", std.FirstName, std.LastName, std.Contact.ToString(), std.Email, std.RegistrationNo, std.Status, ViewStudent.id);
                 int rows = DataConnection.get_instance().Executequery(cmd);
                 MessageBox.Show(String.Format("{0} rows affected", rows));
                 MessageBox.Show("Student Edited Successfully!");
+                //move to view student form
                 this.Hide();
                 ViewStudent vs = new ViewStudent();
                 vs.Show();

@@ -14,3 +14,5 @@ C:\Users\Khadija Zahoor\Desktop\DBProject\DBProject\obj\Debug\DBProject.ViewStud
 C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.AddCLO.resources
 C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.EditCLO.resources
 C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.ViewCLO.resources
+C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.ManageRubric.resources
+C:\Users\Khadija Zahoor\Desktop\DBproject\DBProject\obj\Debug\DBProject.ManageRubricLevels.resources
