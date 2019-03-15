@@ -108,17 +108,19 @@ namespace DBProject
                     {
                         int ru;
                         ru = Convert.ToInt32(Drelated.GetValue(2));
-                        if (ru.ToString() == cid)
+                        if (ru.ToString() == cid.ToString())
                         {
+                            int rl;
+                            rl = Convert.ToInt32(Drelated.GetValue(0));
                             //Deleting Rubric Levels related to the Rubrics which are related to that specific CLO 
-                            SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE Rubricid={0}", ru));
+                            SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE RubricId={0}", rl));
                             if (related != null)
                             {
                                 while (related.Read())
                                 {
                                     int r;
                                     r = Convert.ToInt32(related.GetValue(1));
-                                    if (r.ToString() == ru.ToString())
+                                    if (r.ToString() == rl.ToString())
                                     {
                                         string cmd2 = string.Format("DELETE FROM RubricLevel WHERE RubricId='{0}'", r);
                                         int rows2 = DataConnection.get_instance().Executequery(cmd2);
@@ -130,8 +132,9 @@ namespace DBProject
                             }
 
 
-                            string cmd1 = string.Format("DELETE FROM Rubric WHERE Cloid='{0}'", cid);
-                            DataConnection.get_instance().Executequery(cmd1);
+                            string cmd1 = string.Format("DELETE FROM Rubric WHERE CloId='{0}'", cid);
+                            int row3 = DataConnection.get_instance().Executequery(cmd1);
+                            MessageBox.Show(String.Format("{0} rows affected", row3));
                             MessageBox.Show("Related Rubrics Deleted");
                         }
                     }

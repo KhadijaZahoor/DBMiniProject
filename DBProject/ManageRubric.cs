@@ -135,14 +135,14 @@ namespace DBProject
                 MessageBox.Show("Are you sure you want to Permanently delete the specific Rubric Its related levels will also be deleted?");
 
                 //Deleting Rubric level realted to the Rubric to be deleted
-                SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE Rubricid={0}", rid));
+                SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE RubricId={0}", rid));
                 if (related != null)
                 {
                     while (related.Read())
                     {
                         int r;
                         r = Convert.ToInt32(related.GetValue(1));
-                        if (r.ToString() == ViewCLO.cid.ToString())
+                        if (r.ToString() == rid.ToString())
                         {
                             string cmd2 = string.Format("DELETE FROM RubricLevel WHERE RubricId='{0}'", r);
                             int rows2 = DataConnection.get_instance().Executequery(cmd2);
@@ -154,7 +154,10 @@ namespace DBProject
                 }
 
                 string cmd = string.Format("DELETE FROM Rubric WHERE Id='{0}'", Convert.ToInt32(rid));
-                DataConnection.get_instance().Executequery(cmd);
+                int row3 = DataConnection.get_instance().Executequery(cmd);
+                MessageBox.Show(String.Format("{0} rows affected", row3));
+                MessageBox.Show("Rubric Deleted");
+
 
                 ManageRubric v = new ManageRubric();
                 this.Hide();
