@@ -94,5 +94,53 @@ namespace DBProject
             MessageBox.Show("Are you sure you want to exit");
             this.Hide();
         }
+
+        /// <summary>
+        /// show mark attendance form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button10_Click(object sender, EventArgs e)
+        {
+            MarkAttendence m = new MarkAttendence();
+            this.Hide();
+            m.Show();
+        }
+
+        /// <summary>
+        /// show add assessment form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddAssessment m = new AddAssessment();
+            this.Hide();
+            m.Show();
+        }
+
+        /// <summary>
+        /// show view assessment form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button9_Click(object sender, EventArgs e)
+        {
+            ViewAssessment a = new ViewAssessment();
+            this.Hide();
+            a.Show();
+        }
+
+        /// <summary>
+        /// show attendance list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ViewAttendance a = new ViewAttendance();
+            this.Hide();
+            a.Show();
+        }
     }
 }

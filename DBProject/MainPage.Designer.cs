@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -52,6 +56,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -69,6 +75,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel10);
+            this.panel2.Controls.Add(this.panel9);
             this.panel2.Controls.Add(this.panel8);
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.panel6);
@@ -77,6 +85,52 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(178, 327);
             this.panel2.TabIndex = 1;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.button10);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 190);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(178, 47);
+            this.panel10.TabIndex = 4;
+            // 
+            // button10
+            // 
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(4, 4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(171, 40);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "Mark Attendance";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.button9);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 143);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(178, 47);
+            this.panel9.TabIndex = 3;
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(4, 4);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(171, 40);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "View Assessment";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // panel8
             // 
@@ -99,6 +153,7 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "Add Assessment";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel7
             // 
@@ -228,8 +283,9 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(281, 44);
             this.button7.TabIndex = 6;
-            this.button7.Text = "Mark Attendance";
+            this.button7.Text = "View Attendance List";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // pictureBox4
             // 
@@ -370,6 +426,8 @@
             this.Text = "MainPage";
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.panel2.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -412,5 +470,9 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button button9;
     }
 }

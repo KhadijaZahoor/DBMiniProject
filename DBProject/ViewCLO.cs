@@ -131,6 +131,24 @@ namespace DBProject
                                 }
                             }
 
+                            //Deleting Assessment components related to the Rubrics which are related to that specific CLO 
+                            SqlDataReader related1 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE RubricId={0}", rl));
+                            if (related1 != null)
+                            {
+                                while (related1.Read())
+                                {
+                                    int r;
+                                    r = Convert.ToInt32(related1.GetValue(2));
+                                    if (r.ToString() == rl.ToString())
+                                    {
+                                        string cmd3 = string.Format("DELETE FROM AssessmentComponent WHERE RubricId='{0}'", r);
+                                        int rows3 = DataConnection.get_instance().Executequery(cmd3);
+                                        MessageBox.Show(String.Format("{0} rows affected", rows3));
+                                        MessageBox.Show("Related Assessment Components Deleted");
+
+                                    }
+                                }
+                            }
 
                             string cmd1 = string.Format("DELETE FROM Rubric WHERE CloId='{0}'", cid);
                             int row3 = DataConnection.get_instance().Executequery(cmd1);
@@ -142,6 +160,7 @@ namespace DBProject
 
                 string cmd = string.Format("DELETE FROM Clo WHERE Id='{0}'", Convert.ToInt32(cid));
                 DataConnection.get_instance().Executequery(cmd);
+                MessageBox.Show("CLO Deleted successfully");
 
                 ViewCLO v = new ViewCLO();
                 this.Hide();
