@@ -34,27 +34,30 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridViewrub = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnfilterClo = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnFilterAss = new System.Windows.Forms.Button();
             this.comboBoxClo = new System.Windows.Forms.ComboBox();
             this.comboBoxAss = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.dataGridViewrub = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewrub)).BeginInit();
             this.panel7.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -140,56 +143,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 51);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.dataGridViewrub);
-            this.panel4.Location = new System.Drawing.Point(0, 194);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(753, 232);
-            this.panel4.TabIndex = 19;
-            // 
-            // dataGridViewrub
-            // 
-            this.dataGridViewrub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.dataGridViewrub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewrub.Location = new System.Drawing.Point(89, 3);
-            this.dataGridViewrub.Name = "dataGridViewrub";
-            this.dataGridViewrub.Size = new System.Drawing.Size(583, 223);
-            this.dataGridViewrub.TabIndex = 2;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.panel10);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 423);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(753, 41);
-            this.panel7.TabIndex = 21;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.button5);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(579, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(174, 41);
-            this.panel10.TabIndex = 0;
-            // 
-            // button5
-            // 
-            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button5.Font = new System.Drawing.Font("Palatino Linotype", 18F);
-            this.button5.Location = new System.Drawing.Point(3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(168, 36);
-            this.button5.TabIndex = 23;
-            this.button5.Text = "Home";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -239,6 +192,7 @@
             // comboBoxClo
             // 
             this.comboBoxClo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxClo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClo.FormattingEnabled = true;
             this.comboBoxClo.Location = new System.Drawing.Point(3, 3);
             this.comboBoxClo.Name = "comboBoxClo";
@@ -250,11 +204,88 @@
             this.comboBoxAss.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAss.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAss.FormattingEnabled = true;
             this.comboBoxAss.Location = new System.Drawing.Point(379, 3);
             this.comboBoxAss.Name = "comboBoxAss";
             this.comboBoxAss.Size = new System.Drawing.Size(192, 21);
             this.comboBoxAss.TabIndex = 32;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.dataGridViewrub);
+            this.panel4.Location = new System.Drawing.Point(0, 194);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(753, 232);
+            this.panel4.TabIndex = 19;
+            // 
+            // dataGridViewrub
+            // 
+            this.dataGridViewrub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dataGridViewrub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewrub.Location = new System.Drawing.Point(89, 3);
+            this.dataGridViewrub.Name = "dataGridViewrub";
+            this.dataGridViewrub.Size = new System.Drawing.Size(583, 223);
+            this.dataGridViewrub.TabIndex = 2;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.panel3);
+            this.panel7.Controls.Add(this.panel10);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 423);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(753, 41);
+            this.panel7.TabIndex = 21;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(225, 41);
+            this.panel3.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 18F);
+            this.button1.Location = new System.Drawing.Point(3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(219, 36);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Active Student\'s";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.button5);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel10.Location = new System.Drawing.Point(579, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(174, 41);
+            this.panel10.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Font = new System.Drawing.Font("Palatino Linotype", 18F);
+            this.button5.Location = new System.Drawing.Point(3, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(168, 36);
+            this.button5.TabIndex = 23;
+            this.button5.Text = "Home";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // pdfReports
             // 
@@ -275,12 +306,13 @@
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewrub)).EndInit();
             this.panel7.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -304,5 +336,7 @@
         private System.Windows.Forms.Button btnFilterAss;
         private System.Windows.Forms.ComboBox comboBoxClo;
         private System.Windows.Forms.ComboBox comboBoxAss;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button1;
     }
 }

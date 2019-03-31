@@ -100,7 +100,7 @@ namespace DBProject
                 {
                     DataGridViewRow delete = dataGridViewclo.Rows[e.RowIndex];
                     cid = delete.Cells[0].Value.ToString();
-                    MessageBox.Show("Are you sure you want to Permanently delete the specific CLO(Its releted rubrics and their levels will also be deleted)?");
+                    MessageBox.Show("Are you sure you want to Permanently delete the specific CLO(Its releted rubrics (related components and student result) and their levels will also be deleted)?");
 
                     //Deleting Rubrics related to that clo
                     SqlDataReader Drelated = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM Rubric WHERE CloId={0}", cid));
@@ -112,8 +112,37 @@ namespace DBProject
                             ru = Convert.ToInt32(Drelated.GetValue(2));
                             if (ru.ToString() == cid.ToString())
                             {
+                                int c;
                                 int rl;
                                 rl = Convert.ToInt32(Drelated.GetValue(0));
+
+                                // Deleting assessment component related to that specific rubric
+                                SqlDataReader dataAs = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE RubricId={0}", rl));
+                                if (dataAs != null)
+                                {
+                                    while (dataAs.Read())
+                                    {
+                                        c = Convert.ToInt32(dataAs.GetValue(0));
+                                        SqlDataReader dataSR = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE AssessmentComponentId={0}", c));
+                                        if (dataSR != null)
+                                        {
+                                            while (dataSR.Read())
+                                            {
+
+                                                //Deleting Student Result related to that assessment component
+                                                string cmd = string.Format("DELETE FROM StudentResult WHERE AssessmentComponentId='{0}'", c);
+                                                DataConnection.get_instance().Executequery(cmd);
+                                                MessageBox.Show("Related student result deleted");
+
+                                            }
+
+                                        }
+                                        string cmd1 = string.Format("DELETE FROM AssessmentComponent WHERE RubricId='{0}'", rl);
+                                        DataConnection.get_instance().Executequery(cmd1);
+                                        MessageBox.Show("Related Assessment Component deleted");
+                                    }
+                                }
+
                                 //Deleting Rubric Levels related to the Rubrics which are related to that specific CLO 
                                 SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE RubricId={0}", rl));
                                 if (related != null)
@@ -126,42 +155,22 @@ namespace DBProject
                                         {
                                             string cmd2 = string.Format("DELETE FROM RubricLevel WHERE RubricId='{0}'", r);
                                             int rows2 = DataConnection.get_instance().Executequery(cmd2);
-                                            MessageBox.Show(String.Format("{0} rows affected", rows2));
                                             MessageBox.Show("Related Rubric Levels Deleted");
 
                                         }
                                     }
                                 }
 
-                                //Deleting Assessment components related to the Rubrics which are related to that specific CLO 
-                                SqlDataReader related1 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE RubricId={0}", rl));
-                                if (related1 != null)
-                                {
-                                    while (related1.Read())
-                                    {
-                                        int r;
-                                        r = Convert.ToInt32(related1.GetValue(2));
-                                        if (r.ToString() == rl.ToString())
-                                        {
-                                            string cmd3 = string.Format("DELETE FROM AssessmentComponent WHERE RubricId='{0}'", r);
-                                            int rows3 = DataConnection.get_instance().Executequery(cmd3);
-                                            MessageBox.Show(String.Format("{0} rows affected", rows3));
-                                            MessageBox.Show("Related Assessment Components Deleted");
-
-                                        }
-                                    }
-                                }
-
-                                string cmd1 = string.Format("DELETE FROM Rubric WHERE CloId='{0}'", cid);
-                                int row3 = DataConnection.get_instance().Executequery(cmd1);
+                                string cmd3 = string.Format("DELETE FROM Rubric WHERE CloId='{0}'", cid);
+                                int row3 = DataConnection.get_instance().Executequery(cmd3);
                                 MessageBox.Show(String.Format("{0} rows affected", row3));
                                 MessageBox.Show("Related Rubrics Deleted");
                             }
                         }
                     }
 
-                    string cmd = string.Format("DELETE FROM Clo WHERE Id='{0}'", Convert.ToInt32(cid));
-                    DataConnection.get_instance().Executequery(cmd);
+                    string cmd4 = string.Format("DELETE FROM Clo WHERE Id='{0}'", Convert.ToInt32(cid));
+                    DataConnection.get_instance().Executequery(cmd4);
                     MessageBox.Show("CLO Deleted successfully");
 
                     ViewCLO v = new ViewCLO();
@@ -216,7 +225,6 @@ namespace DBProject
         /// <param name="e"></param>
         private void button2_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you really want to exit this form?");
             MainPage s = new MainPage();
             this.Hide();
             s.Show();

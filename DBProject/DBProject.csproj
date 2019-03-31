@@ -120,6 +120,12 @@
     <Compile Include="ManageRubricLevels.Designer.cs">
       <DependentUpon>ManageRubricLevels.cs</DependentUpon>
     </Compile>
+    <Compile Include="manual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manual.Designer.cs">
+      <DependentUpon>manual.cs</DependentUpon>
+    </Compile>
     <Compile Include="MarkAttendence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageRubricLevels.resx">
       <DependentUpon>ManageRubricLevels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manual.resx">
+      <DependentUpon>manual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MarkAttendence.resx">
       <DependentUpon>MarkAttendence.cs</DependentUpon>

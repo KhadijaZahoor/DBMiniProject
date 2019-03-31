@@ -89,40 +89,47 @@ namespace DBProject
         /// <param name="e"></param>
         private void btnAss_Click(object sender, EventArgs e)
         {
-            if(comboBoxAss.Text == "" )
+            try
             {
-                MessageBox.Show("Select Assessment First!!!");
-            }
-            else
-            {
-                //show assessment component's button and combo box
-                label5.Show();
-                comboBoxCom.Show();
-                btnCom.Show();
-
-                //getting values from Assessment table in database
-                SqlDataReader ass = DataConnection.get_instance().Getdata("SELECT * FROM Assessment");
-
-                //check the values in combobox with Assessment table Title column and assign specific id accordingly
-                while (ass.Read())
+                if (comboBoxAss.Text == "")
                 {
-                    if (ass[1].ToString() == comboBoxAss.Text)
+                    MessageBox.Show("Select Assessment First!!!");
+                }
+                else
+                {
+                    //show assessment component's button and combo box
+                    label5.Show();
+                    comboBoxCom.Show();
+                    btnCom.Show();
+
+                    //getting values from Assessment table in database
+                    SqlDataReader ass = DataConnection.get_instance().Getdata("SELECT * FROM Assessment");
+
+                    //check the values in combobox with Assessment table Title column and assign specific id accordingly
+                    while (ass.Read())
                     {
-                        aid = Convert.ToInt32(ass[0]);
+                        if (ass[1].ToString() == comboBoxAss.Text)
+                        {
+                            aid = Convert.ToInt32(ass[0]);
+                        }
                     }
-                }
 
-                //Show all assessment component's Name in combo box
-                string cmd = string.Format("SELECT * FROM AssessmentComponent WHERE AssessmentId='{0}'", aid);
-                SqlDataReader reader = DataConnection.get_instance().Getdata(cmd);
-                List<string> rname = new List<string>();
-                while (reader.Read())
-                {
-                    rname.Add(reader.GetString(1));
-                }
+                    //Show all assessment component's Name in combo box
+                    string cmd = string.Format("SELECT * FROM AssessmentComponent WHERE AssessmentId='{0}'", aid);
+                    SqlDataReader reader = DataConnection.get_instance().Getdata(cmd);
+                    List<string> rname = new List<string>();
+                    while (reader.Read())
+                    {
+                        rname.Add(reader.GetString(1));
+                    }
 
-                comboBoxCom.DataSource = rname;
-                comboBoxCom.Text = "";
+                    comboBoxCom.DataSource = rname;
+                    comboBoxCom.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -133,47 +140,54 @@ namespace DBProject
         /// <param name="e"></param>
         private void btnCom_Click(object sender, EventArgs e)
         {
-            if (comboBoxAss.Text == "")
+            try
             {
-                MessageBox.Show("Select Assessment First!!!");
-                comboBoxCom.Text = "";
-            }
-            else if (comboBoxCom.Text == "")
-            {
-                MessageBox.Show("Select Assessment component First!!!");
-            }
-            else
-            {
-                //show rubric level button and comboBox
-                label6.Show();
-                comboBoxLevel.Show();
-                btnLevel.Show();
-                
-                //getting values from Assessment table in database
-                SqlDataReader ass = DataConnection.get_instance().Getdata("SELECT * FROM AssessmentComponent");
-
-                //check the values in combobox with Assessment table Title column and assign specific id accordingly
-                while (ass.Read())
+                if (comboBoxAss.Text == "")
                 {
-                    if (ass[1].ToString() == comboBoxCom.Text)
+                    MessageBox.Show("Select Assessment First!!!");
+                    comboBoxCom.Text = "";
+                }
+                else if (comboBoxCom.Text == "")
+                {
+                    MessageBox.Show("Select Assessment component First!!!");
+                }
+                else
+                {
+                    //show rubric level button and comboBox
+                    label6.Show();
+                    comboBoxLevel.Show();
+                    btnLevel.Show();
+
+                    //getting values from Assessment table in database
+                    SqlDataReader ass = DataConnection.get_instance().Getdata("SELECT * FROM AssessmentComponent");
+
+                    //check the values in combobox with Assessment table Title column and assign specific id accordingly
+                    while (ass.Read())
                     {
-                        s.AssessmentComponentId = Convert.ToInt32(ass[0]);
-                        rid= Convert.ToInt32(ass[2]);
-                        cid = Convert.ToInt32(ass[0]);
-                        TotalMarks = Convert.ToInt32(ass[3]);
+                        if (ass[1].ToString() == comboBoxCom.Text)
+                        {
+                            s.AssessmentComponentId = Convert.ToInt32(ass[0]);
+                            rid = Convert.ToInt32(ass[2]);
+                            cid = Convert.ToInt32(ass[0]);
+                            TotalMarks = Convert.ToInt32(ass[3]);
+                        }
                     }
-                }
 
-                string cmd3 = string.Format("SELECT * FROM RubricLevel WHERE RubricId='{0}'", rid);
-                SqlDataReader reader3 = DataConnection.get_instance().Getdata(cmd3);
-                List<int> rname = new List<int>();
-                while (reader3.Read())
-                {
-                    rname.Add(Convert.ToInt32(reader3.GetValue(3)));
-                }
+                    string cmd3 = string.Format("SELECT * FROM RubricLevel WHERE RubricId='{0}'", rid);
+                    SqlDataReader reader3 = DataConnection.get_instance().Getdata(cmd3);
+                    List<int> rname = new List<int>();
+                    while (reader3.Read())
+                    {
+                        rname.Add(Convert.ToInt32(reader3.GetValue(3)));
+                    }
 
-                comboBoxLevel.DataSource = rname;
-                comboBoxLevel.Text = "";
+                    comboBoxLevel.DataSource = rname;
+                    comboBoxLevel.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -184,38 +198,45 @@ namespace DBProject
         /// <param name="e"></param>
         private void btnLevel_Click(object sender, EventArgs e)
         {
-            if (comboBoxAss.Text == "")
+            try
             {
-                MessageBox.Show("Select Assessment First!!!");
-            }
-            else if (comboBoxCom.Text == "")
-            {
-                MessageBox.Show("Select Assessment Component First!!!");
-            }
-            else if (comboBoxLevel.Text == "")
-            {
-                MessageBox.Show("Select Level First!!!");
-            }
-            else
-            {
-                btnResult.Show();
-                level = Convert.ToInt32(comboBoxLevel.Text);
-
-                //store Rubric measurement level id
-                string cmd3 = string.Format("SELECT * FROM RubricLevel WHERE RubricId='{0}'", rid);
-                SqlDataReader reader3 = DataConnection.get_instance().Getdata(cmd3);
-                
-                while (reader3.Read())
+                if (comboBoxAss.Text == "")
                 {
-                    if (level.ToString() == reader3[3].ToString())
-                    {
-                        s.RubricMeasurementId = Convert.ToInt32(reader3[0]);
-                    }
+                    MessageBox.Show("Select Assessment First!!!");
                 }
+                else if (comboBoxCom.Text == "")
+                {
+                    MessageBox.Show("Select Assessment Component First!!!");
+                }
+                else if (comboBoxLevel.Text == "")
+                {
+                    MessageBox.Show("Select Level First!!!");
+                }
+                else
+                {
+                    btnResult.Show();
+                    level = Convert.ToInt32(comboBoxLevel.Text);
 
-                //calculate obtained marks
-                ObtainedMarks = (float)(level * TotalMarks)/4;
+                    //store Rubric measurement level id
+                    string cmd3 = string.Format("SELECT * FROM RubricLevel WHERE RubricId='{0}'", rid);
+                    SqlDataReader reader3 = DataConnection.get_instance().Getdata(cmd3);
 
+                    while (reader3.Read())
+                    {
+                        if (level.ToString() == reader3[3].ToString())
+                        {
+                            s.RubricMeasurementId = Convert.ToInt32(reader3[0]);
+                        }
+                    }
+
+                    //calculate obtained marks
+                    ObtainedMarks = (float)(level * TotalMarks) / 4;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -146,7 +146,6 @@ namespace DBProject
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you really want to exit this form?");
             MainPage s = new MainPage();
             this.Hide();
             s.Show();

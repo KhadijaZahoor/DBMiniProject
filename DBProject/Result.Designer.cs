@@ -256,6 +256,7 @@
             // 
             this.comboBoxLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLevel.FormattingEnabled = true;
             this.comboBoxLevel.Location = new System.Drawing.Point(292, 102);
             this.comboBoxLevel.Name = "comboBoxLevel";
@@ -363,6 +364,7 @@
             // 
             this.comboBoxAss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxAss.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAss.FormattingEnabled = true;
             this.comboBoxAss.Location = new System.Drawing.Point(292, 36);
             this.comboBoxAss.Name = "comboBoxAss";
@@ -373,6 +375,7 @@
             // 
             this.comboBoxCom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCom.FormattingEnabled = true;
             this.comboBoxCom.Location = new System.Drawing.Point(292, 69);
             this.comboBoxCom.Name = "comboBoxCom";

@@ -294,6 +294,7 @@
             // 
             this.txtSStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtSStatus.FormattingEnabled = true;
             this.txtSStatus.Location = new System.Drawing.Point(379, 105);
             this.txtSStatus.Name = "txtSStatus";

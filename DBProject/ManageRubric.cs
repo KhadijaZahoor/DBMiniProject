@@ -139,9 +139,38 @@ namespace DBProject
                 //Deleting Rubric when delete button is clicked in DataGridView
                 if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnDelete")
                 {
+                    int c;
                     DataGridViewRow delete = dataGridViewrub.Rows[e.RowIndex];
                     rid = delete.Cells[0].Value.ToString();
                     MessageBox.Show("Are you sure you want to Permanently delete the specific Rubric Its related Components,levels and their related result will also be deleted?");
+
+                    // Deleting assessment component related to that specific rubric
+                    SqlDataReader dataAs = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE RubricId={0}", rid));
+                    if (dataAs != null)
+                    {
+                        while (dataAs.Read())
+                        {
+                            c = Convert.ToInt32(dataAs.GetValue(0));
+                            SqlDataReader dataSR = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE AssessmentComponentId={0}", c));
+                            if (dataSR != null)
+                            {
+                                while (dataSR.Read())
+                                {
+
+                                    //Deleting Student Result related to that assessment component
+                                    string cmd = string.Format("DELETE FROM StudentResult WHERE AssessmentComponentId='{0}'", c);
+                                    DataConnection.get_instance().Executequery(cmd);
+                                    MessageBox.Show("Related student result deleted");
+
+                                }
+
+                            }
+                            //Deleting Assessment Component related to the rubric
+                            string cmd1 = string.Format("DELETE FROM AssessmentComponent WHERE RubricId='{0}'", rid);
+                            DataConnection.get_instance().Executequery(cmd1);
+                            MessageBox.Show("Related Assessment Component deleted");
+                        }
+                    }
 
                     //Deleting Rubric level realted to the Rubric to be deleted
                     SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE RubricId={0}", rid));
@@ -153,28 +182,6 @@ namespace DBProject
                             r = Convert.ToInt32(related.GetValue(1));
                             if (r.ToString() == rid.ToString())
                             {
-                                int rl;
-                                rl = Convert.ToInt32(related.GetValue(0));
-
-                                //Deleting Student's Result related to the Components which are related to that specific Assessment 
-                                SqlDataReader related1 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE RubricMeasurementId={0}", rl));
-                                if (related1 != null)
-                                {
-                                    while (related1.Read())
-                                    {
-                                        int r2;
-                                        r2 = Convert.ToInt32(related1.GetValue(2));
-                                        if (r2.ToString() == rl.ToString())
-                                        {
-                                            string cmd3 = string.Format("DELETE FROM StudentResult WHERE RubricMeasurementId='{0}'", r2);
-                                            int rows3 = DataConnection.get_instance().Executequery(cmd3);
-                                            MessageBox.Show(String.Format("{0} rows affected", rows3));
-                                            MessageBox.Show("Related Student Result Deleted");
-
-                                        }
-                                    }
-                                }
-
                                 string cmd2 = string.Format("DELETE FROM RubricLevel WHERE RubricId='{0}'", r);
                                 int rows2 = DataConnection.get_instance().Executequery(cmd2);
                                 MessageBox.Show(String.Format("{0} rows affected", rows2));
@@ -184,27 +191,8 @@ namespace DBProject
                         }
                     }
 
-                    //Deleting Assessment Component realted to the Rubric to be deleted
-                    SqlDataReader related4 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE RubricId={0}", rid));
-                    if (related != null)
-                    {
-                        while (related4.Read())
-                        {
-                            int r3;
-                            r3 = Convert.ToInt32(related4.GetValue(2));
-                            if (r3.ToString() == rid.ToString())
-                            {
-                                string cmd4 = string.Format("DELETE FROM AssessmentComponent WHERE RubricId='{0}'", r3);
-                                int rows4 = DataConnection.get_instance().Executequery(cmd4);
-                                MessageBox.Show(String.Format("{0} rows affected", rows4));
-                                MessageBox.Show("Related Assessment Component Deleted");
-
-                            }
-                        }
-                    }
-
-                    string cmd = string.Format("DELETE FROM Rubric WHERE Id='{0}'", Convert.ToInt32(rid));
-                    int row3 = DataConnection.get_instance().Executequery(cmd);
+                    string cmd3 = string.Format("DELETE FROM Rubric WHERE Id='{0}'", Convert.ToInt32(rid));
+                    int row3 = DataConnection.get_instance().Executequery(cmd3);
                     MessageBox.Show(String.Format("{0} rows affected", row3));
                     MessageBox.Show("Rubric Deleted");
 
@@ -248,7 +236,6 @@ namespace DBProject
         /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you really want to exit this form?");
             MainPage s = new MainPage();
             this.Hide();
             s.Show();

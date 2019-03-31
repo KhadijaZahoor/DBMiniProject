@@ -193,5 +193,17 @@ namespace DBProject
                 MessageBox.Show(ex.Message);
             }
         }
+
+        /// <summary>
+        /// show active student's list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ActiveStudent a = new ActiveStudent();
+            this.Hide();
+            a.Show();
+        }
     }
 }

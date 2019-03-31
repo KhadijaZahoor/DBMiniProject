@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace DBProject
 {
@@ -96,15 +97,36 @@ namespace DBProject
         }
 
         /// <summary>
-        /// show mark attendance form
+        /// show mark attendance form if attendance is not marked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button10_Click(object sender, EventArgs e)
         {
-            MarkAttendence m = new MarkAttendence();
-            this.Hide();
-            m.Show();
+            try
+            {
+                bool n = false;
+                //match the date in class attendance table and if attendance is already marked then show the message box
+                SqlDataReader att = DataConnection.get_instance().Getdata("SELECT * FROM ClassAttendance");
+                while (att.Read())
+                {
+                    if (DateTime.Now.Date.ToString() == att[1].ToString())
+                    {
+                        MessageBox.Show("Today's attendance is already marked");
+                        n = true;
+                    }
+                }
+                if (!n)
+                {
+                    MarkAttendence m = new MarkAttendence();
+                    this.Hide();
+                    m.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -120,25 +142,25 @@ namespace DBProject
         }
 
         /// <summary>
-        /// show view assessment form
+        /// show view attendance form
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button9_Click(object sender, EventArgs e)
         {
-            ViewAssessment a = new ViewAssessment();
+            ViewAttendance a = new ViewAttendance();
             this.Hide();
             a.Show();
         }
 
         /// <summary>
-        /// show attendance list
+        /// show assessment list
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button7_Click(object sender, EventArgs e)
         {
-            ViewAttendance a = new ViewAttendance();
+            ViewAssessment a = new ViewAssessment();
             this.Hide();
             a.Show();
         }
@@ -165,6 +187,18 @@ namespace DBProject
             pdfReports a = new pdfReports();
             this.Hide();
             a.Show();
+        }
+
+        /// <summary>
+        /// show manual which contains details of how to use this application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button12_Click(object sender, EventArgs e)
+        {
+            manual m = new manual();
+            this.Hide();
+            m.Show();
         }
     }
 }

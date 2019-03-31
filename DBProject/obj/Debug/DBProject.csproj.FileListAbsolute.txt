@@ -64,3 +64,4 @@ C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\bin\Deb
 C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\bin\Debug\itextsharp.xml
 C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.pdfReports.resources
 C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.csproj.CopyComplete
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.manual.resources
