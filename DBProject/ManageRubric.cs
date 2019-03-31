@@ -77,38 +77,45 @@ namespace DBProject
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (richTextBox1.Text == "")
+            try
             {
-                MessageBox.Show("Details Box should not be empty");
+                if (richTextBox1.Text == "")
+                {
+                    MessageBox.Show("Details Box should not be empty");
+                }
+                //Adding new Rubric
+                else if (!n)
+                {
+                    r.Details = richTextBox1.Text;
+                    r.CloId = Convert.ToInt32(ViewCLO.cid);
+
+                    string cmd = string.Format("INSERT Rubric(Details , CloId) VALUES('{0}','{1}')", r.Details, r.CloId);
+                    int rows = DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show(String.Format("{0} rows affected", rows));
+
+                    ManageRubric frm = new ManageRubric();
+                    this.Hide();
+                    frm.Show();
+                }
+                //Editing Rubric
+                else
+                {
+                    r.Details = richTextBox1.Text;
+
+                    string cmd = string.Format("UPDATE Rubric SET Details='{0}', CloId ='{1}' WHERE Id='{2}'", r.Details, ViewCLO.cid, rid);
+                    int rows = DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show(String.Format("{0} rows affected", rows));
+                    MessageBox.Show("Rubric Edited Successfully!");
+                    this.Hide();
+                    ManageRubric vs = new ManageRubric();
+                    vs.Show();
+                }
             }
-            //Adding new Rubric
-            else if (!n )
+            catch (Exception ex)
             {
-                r.Details = richTextBox1.Text;
-                r.CloId = Convert.ToInt32(ViewCLO.cid);
-
-                string cmd = string.Format("INSERT Rubric(Details , CloId) VALUES('{0}','{1}')", r.Details, r.CloId);
-                int rows = DataConnection.get_instance().Executequery(cmd);
-                MessageBox.Show(String.Format("{0} rows affected", rows));
-
-                ManageRubric frm = new ManageRubric();
-                this.Hide();
-                frm.Show();
+                MessageBox.Show(ex.Message);
             }
-            //Editing Rubric
-            else
-            {
-                r.Details = richTextBox1.Text;
 
-                string cmd = string.Format("UPDATE Rubric SET Details='{0}', CloId ='{1}' WHERE Id='{2}'", r.Details , ViewCLO.cid , rid);
-                int rows = DataConnection.get_instance().Executequery(cmd);
-                MessageBox.Show(String.Format("{0} rows affected", rows));
-                MessageBox.Show("Rubric Edited Successfully!");
-                this.Hide();
-                ManageRubric vs = new ManageRubric();
-                vs.Show();
-            }
-            
         }
 
         /// <summary>
@@ -118,59 +125,107 @@ namespace DBProject
         /// <param name="e"></param>
         private void dataGridViewrub_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //When edit button is clicked in dataGridView then detailes to be edited are shown in the textbox
-            if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnEdit")
+            try
             {
-                DataGridViewRow edit = dataGridViewrub.Rows[e.RowIndex];
-                rid = edit.Cells[0].Value.ToString();
-                string det = edit.Cells[1].Value.ToString();
-                richTextBox1.Text = det;
-                n = true;
-            }
-            //Deleting Rubric when delete button is clicked in DataGridView
-            if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnDelete")
-            {
-                DataGridViewRow delete = dataGridViewrub.Rows[e.RowIndex];
-                rid = delete.Cells[0].Value.ToString();
-                MessageBox.Show("Are you sure you want to Permanently delete the specific Rubric Its related levels will also be deleted?");
-
-                //Deleting Rubric level realted to the Rubric to be deleted
-                SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE RubricId={0}", rid));
-                if (related != null)
+                //When edit button is clicked in dataGridView then detailes to be edited are shown in the textbox
+                if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnEdit")
                 {
-                    while (related.Read())
-                    {
-                        int r;
-                        r = Convert.ToInt32(related.GetValue(1));
-                        if (r.ToString() == rid.ToString())
-                        {
-                            string cmd2 = string.Format("DELETE FROM RubricLevel WHERE RubricId='{0}'", r);
-                            int rows2 = DataConnection.get_instance().Executequery(cmd2);
-                            MessageBox.Show(String.Format("{0} rows affected", rows2));
-                            MessageBox.Show("Related Rubric Levels Deleted");
+                    DataGridViewRow edit = dataGridViewrub.Rows[e.RowIndex];
+                    rid = edit.Cells[0].Value.ToString();
+                    string det = edit.Cells[1].Value.ToString();
+                    richTextBox1.Text = det;
+                    n = true;
+                }
+                //Deleting Rubric when delete button is clicked in DataGridView
+                if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnDelete")
+                {
+                    DataGridViewRow delete = dataGridViewrub.Rows[e.RowIndex];
+                    rid = delete.Cells[0].Value.ToString();
+                    MessageBox.Show("Are you sure you want to Permanently delete the specific Rubric Its related Components,levels and their related result will also be deleted?");
 
+                    //Deleting Rubric level realted to the Rubric to be deleted
+                    SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM RubricLevel WHERE RubricId={0}", rid));
+                    if (related != null)
+                    {
+                        while (related.Read())
+                        {
+                            int r;
+                            r = Convert.ToInt32(related.GetValue(1));
+                            if (r.ToString() == rid.ToString())
+                            {
+                                int rl;
+                                rl = Convert.ToInt32(related.GetValue(0));
+
+                                //Deleting Student's Result related to the Components which are related to that specific Assessment 
+                                SqlDataReader related1 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE RubricMeasurementId={0}", rl));
+                                if (related1 != null)
+                                {
+                                    while (related1.Read())
+                                    {
+                                        int r2;
+                                        r2 = Convert.ToInt32(related1.GetValue(2));
+                                        if (r2.ToString() == rl.ToString())
+                                        {
+                                            string cmd3 = string.Format("DELETE FROM StudentResult WHERE RubricMeasurementId='{0}'", r2);
+                                            int rows3 = DataConnection.get_instance().Executequery(cmd3);
+                                            MessageBox.Show(String.Format("{0} rows affected", rows3));
+                                            MessageBox.Show("Related Student Result Deleted");
+
+                                        }
+                                    }
+                                }
+
+                                string cmd2 = string.Format("DELETE FROM RubricLevel WHERE RubricId='{0}'", r);
+                                int rows2 = DataConnection.get_instance().Executequery(cmd2);
+                                MessageBox.Show(String.Format("{0} rows affected", rows2));
+                                MessageBox.Show("Related Rubric Levels Deleted");
+
+                            }
                         }
                     }
+
+                    //Deleting Assessment Component realted to the Rubric to be deleted
+                    SqlDataReader related4 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE RubricId={0}", rid));
+                    if (related != null)
+                    {
+                        while (related4.Read())
+                        {
+                            int r3;
+                            r3 = Convert.ToInt32(related4.GetValue(2));
+                            if (r3.ToString() == rid.ToString())
+                            {
+                                string cmd4 = string.Format("DELETE FROM AssessmentComponent WHERE RubricId='{0}'", r3);
+                                int rows4 = DataConnection.get_instance().Executequery(cmd4);
+                                MessageBox.Show(String.Format("{0} rows affected", rows4));
+                                MessageBox.Show("Related Assessment Component Deleted");
+
+                            }
+                        }
+                    }
+
+                    string cmd = string.Format("DELETE FROM Rubric WHERE Id='{0}'", Convert.ToInt32(rid));
+                    int row3 = DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show(String.Format("{0} rows affected", row3));
+                    MessageBox.Show("Rubric Deleted");
+
+
+                    ManageRubric v = new ManageRubric();
+                    this.Hide();
+                    v.Show();
                 }
-
-                string cmd = string.Format("DELETE FROM Rubric WHERE Id='{0}'", Convert.ToInt32(rid));
-                int row3 = DataConnection.get_instance().Executequery(cmd);
-                MessageBox.Show(String.Format("{0} rows affected", row3));
-                MessageBox.Show("Rubric Deleted");
-
-
-                ManageRubric v = new ManageRubric();
-                this.Hide();
-                v.Show();
+                //when rubric level button is clicked in the dataGridView Then Manage rubric level form is Opened and Rubric id is also passed to the next form
+                if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnRubric")
+                {
+                    DataGridViewRow edit = dataGridViewrub.Rows[e.RowIndex];
+                    rid = edit.Cells[0].Value.ToString();
+                    ManageRubricLevels f = new ManageRubricLevels();
+                    this.Hide();
+                    f.Show();
+                }
             }
-            //when rubric level button is clicked in the dataGridView Then Manage rubric level form is Opened and Rubric id is also passed to the next form
-            if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnRubric")
+            catch (Exception ex)
             {
-                DataGridViewRow edit = dataGridViewrub.Rows[e.RowIndex];
-                rid = edit.Cells[0].Value.ToString();
-                ManageRubricLevels f = new ManageRubricLevels();
-                this.Hide();
-                f.Show();
+                MessageBox.Show(ex.Message);
             }
         }
 

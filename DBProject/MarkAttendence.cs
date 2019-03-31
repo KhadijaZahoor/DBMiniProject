@@ -18,12 +18,20 @@ namespace DBProject
             InitializeComponent();
         }
 
+        //make new column of comboBox
         DataGridViewComboBoxColumn com = new DataGridViewComboBoxColumn();
 
+        //new object of studentAttendance type
         StudentAttendance sta = new StudentAttendance();
 
         //crete new list of student class type
         List<Student> student = new List<Student>();
+
+        /// <summary>
+        /// show list of active students in DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MarkAttendence_Load(object sender, EventArgs e)
         {
             //Get the data from student table in database
@@ -64,6 +72,11 @@ namespace DBProject
         
         }
 
+        /// <summary>
+        /// mark the attendance of active Students
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             //making connection and adding class attendance attributes in database
@@ -73,6 +86,7 @@ namespace DBProject
             conn.Open();
             cmd.ExecuteNonQuery();
 
+            //store the attributes in StudentAttendance of active students
             for (int x=0;x<student.Count();x++)
             {
                 SqlDataReader attendance = DataConnection.get_instance().Getdata("SELECT * FROM ClassAttendance");

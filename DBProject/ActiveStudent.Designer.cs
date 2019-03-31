@@ -1,6 +1,6 @@
 ﻿namespace DBProject
 {
-    partial class MarkAttendence
+    partial class ActiveStudent
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 94);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(753, 67);
-            this.panel1.TabIndex = 9;
+            this.panel1.TabIndex = 13;
             // 
             // label2
             // 
@@ -80,11 +80,11 @@
             this.label2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(222, 15);
+            this.label2.Location = new System.Drawing.Point(204, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(331, 41);
+            this.label2.Size = new System.Drawing.Size(384, 41);
             this.label2.TabIndex = 0;
-            this.label2.Text = "MARK ATTENDANCE";
+            this.label2.Text = "ACTIVE STUDENT\'S LIST";
             // 
             // tableLayoutPanel3
             // 
@@ -100,7 +100,7 @@
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(753, 94);
-            this.tableLayoutPanel3.TabIndex = 8;
+            this.tableLayoutPanel3.TabIndex = 12;
             // 
             // pictureBox1
             // 
@@ -123,7 +123,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 398);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(753, 66);
-            this.panel2.TabIndex = 10;
+            this.panel2.TabIndex = 14;
             // 
             // panel4
             // 
@@ -142,7 +142,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(257, 39);
             this.button1.TabIndex = 21;
-            this.button1.Text = "View Attendance List";
+            this.button1.Text = "View Student\'s List";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -163,7 +163,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(204, 39);
             this.button2.TabIndex = 22;
-            this.button2.Text = "Submit";
+            this.button2.Text = "Home";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -180,7 +180,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 237);
-            this.tableLayoutPanel1.TabIndex = 11;
+            this.tableLayoutPanel1.TabIndex = 15;
             // 
             // dataGridView1
             // 
@@ -192,7 +192,7 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // MarkAttendence
+            // ActiveStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -201,9 +201,9 @@
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "MarkAttendence";
-            this.Text = "MarkAttendence";
-            this.Load += new System.EventHandler(this.MarkAttendence_Load);
+            this.Name = "ActiveStudent";
+            this.Text = "ActiveStudent";
+            this.Load += new System.EventHandler(this.ActiveStudent_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);

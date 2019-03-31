@@ -30,6 +30,7 @@ namespace DBProject
         {
             if (ViewAssessment.aid != null)
             {
+                //show the data in textboxes
                 SqlDataReader data = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM Assessment"));
                 while (data.Read())
                 {
@@ -45,35 +46,48 @@ namespace DBProject
             }
         }
 
+        /// <summary>
+        /// edit the assessment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRegisterS_Click(object sender, EventArgs e)
         {
-            if (ViewAssessment.aid != null)
+            try
             {
-                if (txtSFname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "")
+                if (ViewAssessment.aid != null)
                 {
-                    MessageBox.Show("Boxes should not be empty");
+                    if (txtSFname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "")
+                    {
+                        MessageBox.Show("Boxes should not be empty");
+                    }
+                    else
+                    {
+                        ass.Title = txtSFname.Text;
+                        ass.TotalMarks = Convert.ToInt32(txtScontact.Text);
+                        ass.TotalWeightage = Convert.ToInt32(txtSemail.Text);
+
+                        SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
+                        SqlCommand cmd = new SqlCommand("UPDATE Assessment SET Title=@title , TotalMarks=@totalMarks , TotalWeightage=@totalWeightage WHERE Id=@id", conn);
+                        cmd.Parameters.AddWithValue("@title", ass.Title);
+                        cmd.Parameters.AddWithValue("@totalMarks", ass.TotalMarks);
+                        cmd.Parameters.AddWithValue("@totalWeightage", ass.TotalWeightage);
+                        cmd.Parameters.AddWithValue("@id", ViewAssessment.aid);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Assessment Edited Successfully!");
+
+                        //show view assessment form
+                        this.Hide();
+                        ViewAssessment vs = new ViewAssessment();
+                        vs.Show();
+                    }
+
                 }
-                else
-                {
-                    ass.Title = txtSFname.Text;
-                    ass.TotalMarks = Convert.ToInt32(txtScontact.Text);
-                    ass.TotalWeightage = Convert.ToInt32(txtSemail.Text);
-
-                    SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
-                    SqlCommand cmd = new SqlCommand("UPDATE Assessment SET Title=@title , TotalMarks=@totalMarks , TotalWeightage=@totalWeightage WHERE Id=@id", conn);
-                    cmd.Parameters.AddWithValue("@title", ass.Title);
-                    cmd.Parameters.AddWithValue("@totalMarks", ass.TotalMarks);
-                    cmd.Parameters.AddWithValue("@totalWeightage", ass.TotalWeightage);
-                    cmd.Parameters.AddWithValue("@id", ViewAssessment.aid);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Assessment Edited Successfully!");
-
-                    this.Hide();
-                    ViewAssessment vs = new ViewAssessment();
-                    vs.Show();
-                }
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -142,5 +142,29 @@ namespace DBProject
             this.Hide();
             a.Show();
         }
+
+        /// <summary>
+        /// show students list to generate result
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button8_Click(object sender, EventArgs e)
+        {
+            ActiveStudent a = new ActiveStudent();
+            this.Hide();
+            a.Show();
+        }
+
+        /// <summary>
+        /// Show pdf reports form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button11_Click(object sender, EventArgs e)
+        {
+            pdfReports a = new pdfReports();
+            this.Hide();
+            a.Show();
+        }
     }
 }

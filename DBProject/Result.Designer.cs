@@ -1,6 +1,6 @@
 ﻿namespace DBProject
 {
-    partial class AssessmentComponent
+    partial class Result
     {
         /// <summary>
         /// Required designer variable.
@@ -34,19 +34,26 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblSFname = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtDetails = new System.Windows.Forms.TextBox();
-            this.txtMLevel = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtSStatus = new System.Windows.Forms.ComboBox();
+            this.comboBoxLevel = new System.Windows.Forms.ComboBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnAss = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnCom = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.btnLevel = new System.Windows.Forms.Button();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.btnResult = new System.Windows.Forms.Button();
+            this.comboBoxAss = new System.Windows.Forms.ComboBox();
+            this.comboBoxCom = new System.Windows.Forms.ComboBox();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.lblRegNo = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridViewrub = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,8 +67,12 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewrub)).BeginInit();
             this.panel2.SuspendLayout();
@@ -77,7 +88,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 94);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(752, 46);
-            this.panel1.TabIndex = 14;
+            this.panel1.TabIndex = 16;
             // 
             // label2
             // 
@@ -86,11 +97,11 @@
             this.label2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(103, 2);
+            this.label2.Location = new System.Drawing.Point(241, 2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(577, 41);
+            this.label2.Size = new System.Drawing.Size(287, 41);
             this.label2.TabIndex = 0;
-            this.label2.Text = "MANAGE ASSESSMENT COMPONENT";
+            this.label2.Text = "STUDENT RESULT";
             // 
             // tableLayoutPanel3
             // 
@@ -106,7 +117,7 @@
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(752, 94);
-            this.tableLayoutPanel3.TabIndex = 13;
+            this.tableLayoutPanel3.TabIndex = 15;
             // 
             // label1
             // 
@@ -135,49 +146,42 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.46154F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.46154F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.07692F));
             this.tableLayoutPanel1.Controls.Add(this.panel5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtDetails, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtMLevel, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.panel6, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel9, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtSStatus, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxLevel, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel10, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel6, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel11, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel12, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxAss, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxCom, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel13, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 140);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.12904F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.12903F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.12903F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.12903F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.35484F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.12903F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(752, 209);
-            this.tableLayoutPanel1.TabIndex = 19;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(184, 32);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Add Component";
+            this.tableLayoutPanel1.TabIndex = 22;
             // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel5.Controls.Add(this.lblSFname);
-            this.panel5.Location = new System.Drawing.Point(129, 37);
+            this.panel5.Location = new System.Drawing.Point(61, 36);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(117, 28);
+            this.panel5.Size = new System.Drawing.Size(166, 27);
             this.panel5.TabIndex = 26;
             // 
             // lblSFname
@@ -189,17 +193,17 @@
             this.lblSFname.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSFname.Location = new System.Drawing.Point(14, -8);
             this.lblSFname.Name = "lblSFname";
-            this.lblSFname.Size = new System.Drawing.Size(79, 32);
+            this.lblSFname.Size = new System.Drawing.Size(140, 32);
             this.lblSFname.TabIndex = 22;
-            this.lblSFname.Text = "Name";
+            this.lblSFname.Text = "Assessment";
             // 
             // panel7
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel7.Controls.Add(this.label5);
-            this.panel7.Location = new System.Drawing.Point(107, 71);
+            this.panel7.Location = new System.Drawing.Point(3, 69);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(161, 28);
+            this.panel7.Size = new System.Drawing.Size(283, 27);
             this.panel7.TabIndex = 28;
             // 
             // label5
@@ -211,70 +215,28 @@
             this.label5.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(14, -8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(140, 32);
+            this.label5.Size = new System.Drawing.Size(271, 32);
             this.label5.TabIndex = 22;
-            this.label5.Text = "Total Marks";
-            // 
-            // txtDetails
-            // 
-            this.txtDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDetails.Location = new System.Drawing.Point(379, 37);
-            this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(220, 20);
-            this.txtDetails.TabIndex = 29;
-            // 
-            // txtMLevel
-            // 
-            this.txtMLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMLevel.Location = new System.Drawing.Point(379, 71);
-            this.txtMLevel.Name = "txtMLevel";
-            this.txtMLevel.Size = new System.Drawing.Size(220, 20);
-            this.txtMLevel.TabIndex = 30;
+            this.label5.Text = "Assessment Component";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 170);
+            this.label4.Location = new System.Drawing.Point(3, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(270, 32);
+            this.label4.Size = new System.Drawing.Size(187, 32);
             this.label4.TabIndex = 24;
-            this.label4.Text = "View Components\'s List";
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.Controls.Add(this.button1);
-            this.panel6.Location = new System.Drawing.Point(578, 139);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(171, 28);
-            this.panel6.TabIndex = 27;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(11, -2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 30);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "SAVE";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label4.Text = "Student\'s Result";
             // 
             // panel9
             // 
             this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel9.Controls.Add(this.label6);
-            this.panel9.Location = new System.Drawing.Point(129, 105);
+            this.panel9.Location = new System.Drawing.Point(58, 102);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(117, 28);
+            this.panel9.Size = new System.Drawing.Size(172, 27);
             this.panel9.TabIndex = 31;
             // 
             // label6
@@ -286,19 +248,160 @@
             this.label6.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(14, -8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 32);
+            this.label6.Size = new System.Drawing.Size(147, 32);
             this.label6.TabIndex = 22;
-            this.label6.Text = "Rubric";
+            this.label6.Text = "Rubric Level";
             // 
-            // txtSStatus
+            // comboBoxLevel
             // 
-            this.txtSStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.comboBoxLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtSStatus.FormattingEnabled = true;
-            this.txtSStatus.Location = new System.Drawing.Point(379, 105);
-            this.txtSStatus.Name = "txtSStatus";
-            this.txtSStatus.Size = new System.Drawing.Size(220, 21);
-            this.txtSStatus.TabIndex = 32;
+            this.comboBoxLevel.FormattingEnabled = true;
+            this.comboBoxLevel.Location = new System.Drawing.Point(292, 102);
+            this.comboBoxLevel.Name = "comboBoxLevel";
+            this.comboBoxLevel.Size = new System.Drawing.Size(220, 21);
+            this.comboBoxLevel.TabIndex = 32;
+            // 
+            // panel10
+            // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel10.Controls.Add(this.btnAss);
+            this.panel10.Location = new System.Drawing.Point(581, 36);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(156, 27);
+            this.panel10.TabIndex = 33;
+            // 
+            // btnAss
+            // 
+            this.btnAss.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAss.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAss.Location = new System.Drawing.Point(3, -2);
+            this.btnAss.Name = "btnAss";
+            this.btnAss.Size = new System.Drawing.Size(145, 29);
+            this.btnAss.TabIndex = 25;
+            this.btnAss.Text = "Select";
+            this.btnAss.UseVisualStyleBackColor = true;
+            this.btnAss.Click += new System.EventHandler(this.btnAss_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel6.Controls.Add(this.btnCom);
+            this.panel6.Location = new System.Drawing.Point(581, 69);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(156, 27);
+            this.panel6.TabIndex = 27;
+            // 
+            // btnCom
+            // 
+            this.btnCom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCom.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCom.Location = new System.Drawing.Point(3, -2);
+            this.btnCom.Name = "btnCom";
+            this.btnCom.Size = new System.Drawing.Size(145, 29);
+            this.btnCom.TabIndex = 25;
+            this.btnCom.Text = "Select";
+            this.btnCom.UseVisualStyleBackColor = true;
+            this.btnCom.Click += new System.EventHandler(this.btnCom_Click);
+            // 
+            // panel11
+            // 
+            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel11.Controls.Add(this.btnLevel);
+            this.panel11.Location = new System.Drawing.Point(581, 102);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(156, 27);
+            this.panel11.TabIndex = 34;
+            // 
+            // btnLevel
+            // 
+            this.btnLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLevel.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLevel.Location = new System.Drawing.Point(3, -2);
+            this.btnLevel.Name = "btnLevel";
+            this.btnLevel.Size = new System.Drawing.Size(145, 29);
+            this.btnLevel.TabIndex = 25;
+            this.btnLevel.Text = "Assign";
+            this.btnLevel.UseVisualStyleBackColor = true;
+            this.btnLevel.Click += new System.EventHandler(this.btnLevel_Click);
+            // 
+            // panel12
+            // 
+            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel12.Controls.Add(this.btnResult);
+            this.panel12.Location = new System.Drawing.Point(581, 135);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(168, 34);
+            this.panel12.TabIndex = 35;
+            // 
+            // btnResult
+            // 
+            this.btnResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnResult.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResult.Location = new System.Drawing.Point(3, -2);
+            this.btnResult.Name = "btnResult";
+            this.btnResult.Size = new System.Drawing.Size(162, 36);
+            this.btnResult.TabIndex = 25;
+            this.btnResult.Text = "RESULT";
+            this.btnResult.UseVisualStyleBackColor = true;
+            this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
+            // 
+            // comboBoxAss
+            // 
+            this.comboBoxAss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxAss.FormattingEnabled = true;
+            this.comboBoxAss.Location = new System.Drawing.Point(292, 36);
+            this.comboBoxAss.Name = "comboBoxAss";
+            this.comboBoxAss.Size = new System.Drawing.Size(220, 21);
+            this.comboBoxAss.TabIndex = 36;
+            // 
+            // comboBoxCom
+            // 
+            this.comboBoxCom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxCom.FormattingEnabled = true;
+            this.comboBoxCom.Location = new System.Drawing.Point(292, 69);
+            this.comboBoxCom.Name = "comboBoxCom";
+            this.comboBoxCom.Size = new System.Drawing.Size(220, 21);
+            this.comboBoxCom.TabIndex = 37;
+            // 
+            // panel13
+            // 
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel13.Controls.Add(this.lblRegNo);
+            this.panel13.Location = new System.Drawing.Point(21, 3);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(246, 27);
+            this.panel13.TabIndex = 38;
+            // 
+            // lblRegNo
+            // 
+            this.lblRegNo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRegNo.AutoSize = true;
+            this.lblRegNo.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblRegNo.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegNo.Location = new System.Drawing.Point(7, -3);
+            this.lblRegNo.Name = "lblRegNo";
+            this.lblRegNo.Size = new System.Drawing.Size(236, 32);
+            this.lblRegNo.TabIndex = 21;
+            this.lblRegNo.Text = "Registration Number";
             // 
             // panel4
             // 
@@ -307,7 +410,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 349);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(752, 131);
-            this.panel4.TabIndex = 18;
+            this.panel4.TabIndex = 21;
             // 
             // dataGridViewrub
             // 
@@ -317,7 +420,6 @@
             this.dataGridViewrub.Name = "dataGridViewrub";
             this.dataGridViewrub.Size = new System.Drawing.Size(583, 122);
             this.dataGridViewrub.TabIndex = 2;
-            this.dataGridViewrub.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewrub_CellContentClick);
             // 
             // panel2
             // 
@@ -327,7 +429,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 480);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(752, 41);
-            this.panel2.TabIndex = 17;
+            this.panel2.TabIndex = 20;
             // 
             // panel8
             // 
@@ -373,7 +475,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // AssessmentComponent
+            // Result
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -383,9 +485,9 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel3);
-            this.Name = "AssessmentComponent";
-            this.Text = "AssessmentComponent";
-            this.Load += new System.EventHandler(this.AssessmentComponent_Load);
+            this.Name = "Result";
+            this.Text = "Result";
+            this.Load += new System.EventHandler(this.Result_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -397,9 +499,14 @@
             this.panel5.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewrub)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -417,16 +524,25 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblRegNo;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblSFname;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDetails;
-        private System.Windows.Forms.TextBox txtMLevel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxLevel;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button btnAss;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnCom;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Button btnLevel;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button btnResult;
+        private System.Windows.Forms.ComboBox comboBoxAss;
+        private System.Windows.Forms.ComboBox comboBoxCom;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridViewrub;
         private System.Windows.Forms.Panel panel2;
@@ -434,8 +550,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox txtSStatus;
+        private System.Windows.Forms.Panel panel13;
     }
 }

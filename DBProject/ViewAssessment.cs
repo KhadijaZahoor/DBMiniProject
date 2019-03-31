@@ -26,11 +26,15 @@ namespace DBProject
         //attribute to store assessment id
         public static string aid;
 
+        /// <summary>
+        /// show the assessment's list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewAssessment_Load(object sender, EventArgs e)
         {
-            //showing list of assessment in dataGridView
             SqlDataReader reader = DataConnection.get_instance().Getdata("SELECT * FROM Assessment");
-            //Creting new list of Assessment to store the data from database
+            //Creating new list of Assessment to store the data from database
             List<Assessment> ass = new List<Assessment>();
             while (reader.Read())
             {
@@ -91,56 +95,86 @@ namespace DBProject
         /// <param name="e"></param>
         private void dataGridViewclo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //open edit assessment form for Editing clo 
-            if (dataGridViewclo.Columns[e.ColumnIndex].Name == "btnEdit")
+            try
             {
-                DataGridViewRow edit = dataGridViewclo.Rows[e.RowIndex];
-                aid = edit.Cells[0].Value.ToString();
-                EditAssessment f = new EditAssessment();
-                this.Hide();
-                f.Show();
-            }
-            //Deleting Specific CLO
-            if (dataGridViewclo.Columns[e.ColumnIndex].Name == "btnDelete")
-            {
-                DataGridViewRow delete = dataGridViewclo.Rows[e.RowIndex];
-                aid = delete.Cells[0].Value.ToString();
-                MessageBox.Show("Are you sure you want to Permanently delete the specific Assessment(Its releted components will also be deleted)?");
-
-                //Deleting Assessment Component realted to the Assessment to be deleted
-                SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE AssessmentId={0}", aid));
-                if (related != null)
+                //open edit assessment form for Editing assessment 
+                if (dataGridViewclo.Columns[e.ColumnIndex].Name == "btnEdit")
                 {
-                    while (related.Read())
-                    {
-                        int r;
-                        r = Convert.ToInt32(related.GetValue(6));
-                        if (r.ToString() == aid.ToString())
-                        {
-                            string cmd2 = string.Format("DELETE FROM AssessmentComponent WHERE AssessmentId='{0}'", r);
-                            int rows2 = DataConnection.get_instance().Executequery(cmd2);
-                            MessageBox.Show(String.Format("{0} rows affected", rows2));
-                            MessageBox.Show("Related Assessment components Deleted");
+                    DataGridViewRow edit = dataGridViewclo.Rows[e.RowIndex];
+                    aid = edit.Cells[0].Value.ToString();
+                    EditAssessment f = new EditAssessment();
+                    this.Hide();
+                    f.Show();
+                }
+                //Deleting Specific assessment
+                if (dataGridViewclo.Columns[e.ColumnIndex].Name == "btnDelete")
+                {
+                    DataGridViewRow delete = dataGridViewclo.Rows[e.RowIndex];
+                    aid = delete.Cells[0].Value.ToString();
+                    MessageBox.Show("Are you sure you want to Permanently delete the specific Assessment(Its releted components and their results will also be deleted)?");
 
+                    //Deleting Assessment Component realted to the Assessment to be deleted
+                    SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM AssessmentComponent WHERE AssessmentId={0}", aid));
+                    if (related != null)
+                    {
+                        while (related.Read())
+                        {
+                            int r;
+                            r = Convert.ToInt32(related.GetValue(6));
+                            if (r.ToString() == aid.ToString())
+                            {
+                                int rl;
+                                rl = Convert.ToInt32(related.GetValue(0));
+
+                                //Deleting Student's Result related to the Components which are related to that specific Assessment 
+                                SqlDataReader related1 = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE AssessmentComponentId={0}", rl));
+                                if (related1 != null)
+                                {
+                                    while (related1.Read())
+                                    {
+                                        int r2;
+                                        r2 = Convert.ToInt32(related1.GetValue(1));
+                                        if (r2.ToString() == rl.ToString())
+                                        {
+                                            string cmd3 = string.Format("DELETE FROM StudentResult WHERE AssessmentComponentId='{0}'", r2);
+                                            int rows3 = DataConnection.get_instance().Executequery(cmd3);
+                                            MessageBox.Show(String.Format("{0} rows affected", rows3));
+                                            MessageBox.Show("Related Student Result Deleted");
+
+                                        }
+                                    }
+                                }
+
+                                string cmd2 = string.Format("DELETE FROM AssessmentComponent WHERE AssessmentId='{0}'", r);
+                                int rows2 = DataConnection.get_instance().Executequery(cmd2);
+                                MessageBox.Show(String.Format("{0} rows affected", rows2));
+                                MessageBox.Show("Related Assessment components Deleted");
+
+                            }
                         }
                     }
+
+                    string cmd = string.Format("DELETE FROM Assessment WHERE Id='{0}'", Convert.ToInt32(aid));
+                    DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show("Assessment Deleted");
+
+                    ViewAssessment v = new ViewAssessment();
+                    this.Hide();
+                    v.Show();
                 }
-
-                string cmd = string.Format("DELETE FROM Assessment WHERE Id='{0}'", Convert.ToInt32(aid));
-                DataConnection.get_instance().Executequery(cmd);
-
-                ViewAssessment v = new ViewAssessment();
-                this.Hide();
-                v.Show();
+                //On the click of manage components button openening manage assessment component form
+                if (dataGridViewclo.Columns[e.ColumnIndex].Name == "btnComponent")
+                {
+                    DataGridViewRow rubr = dataGridViewclo.Rows[e.RowIndex];
+                    aid = rubr.Cells[0].Value.ToString();
+                    AssessmentComponent f = new AssessmentComponent();
+                    this.Hide();
+                    f.Show();
+                }
             }
-            //On the click of manage components button openening manage assessment component form
-            if (dataGridViewclo.Columns[e.ColumnIndex].Name == "btnComponent")
+            catch (Exception ex)
             {
-                DataGridViewRow rubr = dataGridViewclo.Rows[e.RowIndex];
-                aid = rubr.Cells[0].Value.ToString();
-                AssessmentComponent f = new AssessmentComponent();
-                this.Hide();
-                f.Show();
+                MessageBox.Show(ex.Message);
             }
         }
     }

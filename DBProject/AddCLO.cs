@@ -32,29 +32,36 @@ namespace DBProject
         //adding clo
         private void btnRegisterS_Click(object sender, EventArgs e)
         {
-            if (txtCname.Text == "" )
+            try
             {
-                MessageBox.Show("CLO Name should not be empty");
-            }
-            else
-            {
-                clo.Name = txtCname.Text;
-                clo.DateCreated = DateTime.Now.Date;
-                clo.DateUpdated = DateTime.Now.Date;
+                if (txtCname.Text == "")
+                {
+                    MessageBox.Show("CLO Name should not be empty");
+                }
+                else
+                {
+                    clo.Name = txtCname.Text;
+                    clo.DateCreated = DateTime.Now.Date;
+                    clo.DateUpdated = DateTime.Now.Date;
 
-                //making connection and adding clo attributes in the CLO table in database
-                SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand("INSERT INTO Clo(Name,DateCreated,DateUpdated) VALUES (@name,@dateCreated,@dateUpdated)", conn);
-                cmd.Parameters.AddWithValue("@name", clo.Name);
-                cmd.Parameters.AddWithValue("@dateCreated", clo.DateCreated);
-                cmd.Parameters.AddWithValue("@dateUpdated", clo.DateUpdated);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                ViewCLO frm = new ViewCLO();
-                this.Hide();
-                frm.Show();
+                    //making connection and adding clo attributes in the CLO table in database
+                    SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Clo(Name,DateCreated,DateUpdated) VALUES (@name,@dateCreated,@dateUpdated)", conn);
+                    cmd.Parameters.AddWithValue("@name", clo.Name);
+                    cmd.Parameters.AddWithValue("@dateCreated", clo.DateCreated);
+                    cmd.Parameters.AddWithValue("@dateUpdated", clo.DateUpdated);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    ViewCLO frm = new ViewCLO();
+                    this.Hide();
+                    frm.Show();
+                }
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBProject
 {
+    /// <summary>
+    /// This class of StudentAttendance contains specific Attributes according to the database StudentAttendance table
+    /// </summary>
     class StudentAttendance
     {
         private int attendanceId;

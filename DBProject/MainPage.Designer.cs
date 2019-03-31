@@ -55,6 +55,8 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -71,10 +73,12 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel11);
             this.panel2.Controls.Add(this.panel10);
             this.panel2.Controls.Add(this.panel9);
             this.panel2.Controls.Add(this.panel8);
@@ -272,6 +276,7 @@
             this.button8.TabIndex = 7;
             this.button8.Text = "Student Result";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -413,6 +418,29 @@
             this.panel1.Size = new System.Drawing.Size(753, 94);
             this.panel1.TabIndex = 0;
             // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.button11);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 237);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(178, 47);
+            this.panel11.TabIndex = 5;
+            // 
+            // button11
+            // 
+            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button11.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.Location = new System.Drawing.Point(4, 4);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(171, 40);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "Pdf Reports";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -442,6 +470,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -474,5 +503,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Button button11;
     }
 }

@@ -74,27 +74,55 @@ namespace DBProject
         /// <param name="e"></param>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //on edit click move to student edit form
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "btnEdit")
+            try
             {
-                DataGridViewRow edit = dataGridView1.Rows[e.RowIndex];
-                id = edit.Cells[0].Value.ToString();
-                EditStudent f = new EditStudent();
-                this.Hide();
-                f.Show();
-            }
-            //Deleting specific student
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "btnDelete")
-            {
-                DataGridViewRow delete = dataGridView1.Rows[e.RowIndex];
-                id = delete.Cells[0].Value.ToString();
-                MessageBox.Show("Are you sure you want to Permanently delete the specific Student?");
-                string cmd = string.Format("DELETE FROM Student WHERE Id='{0}'", Convert.ToInt32(id));
-                DataConnection.get_instance().Executequery(cmd);
+                //on edit click move to student edit form
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "btnEdit")
+                {
+                    DataGridViewRow edit = dataGridView1.Rows[e.RowIndex];
+                    id = edit.Cells[0].Value.ToString();
+                    EditStudent f = new EditStudent();
+                    this.Hide();
+                    f.Show();
+                }
+                //Deleting specific student
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "btnDelete")
+                {
+                    DataGridViewRow delete = dataGridView1.Rows[e.RowIndex];
+                    id = delete.Cells[0].Value.ToString();
+                    MessageBox.Show("Are you sure you want to Permanently delete the specific Student Its related result will also be deleted?");
 
-                ViewStudent v = new ViewStudent();
-                this.Hide();
-                v.Show();
+                    //Deleting Student Result realted to the Student to be deleted
+                    SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE StudentId={0}", id));
+                    if (related != null)
+                    {
+                        while (related.Read())
+                        {
+                            int r;
+                            r = Convert.ToInt32(related.GetValue(1));
+                            if (r.ToString() == id.ToString())
+                            {
+                                string cmd2 = string.Format("DELETE FROM StudentResult WHERE StudentId='{0}'", r);
+                                int rows2 = DataConnection.get_instance().Executequery(cmd2);
+                                MessageBox.Show(String.Format("{0} rows affected", rows2));
+                                MessageBox.Show("Related Student Result Deleted");
+
+                            }
+                        }
+                    }
+
+                    string cmd = string.Format("DELETE FROM Student WHERE Id='{0}'", Convert.ToInt32(id));
+                    DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show("Student Deleted");
+
+                    ViewStudent v = new ViewStudent();
+                    this.Hide();
+                    v.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

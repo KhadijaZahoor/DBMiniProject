@@ -28,37 +28,46 @@ namespace DBProject
         /// <param name="e"></param>
         private void btnRegisterS_Click(object sender, EventArgs e)
         {
-            if (txtSFname.Text == "" || txtSLname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "")
+            try
             {
-                MessageBox.Show("Boxes should not be empty");
+                //validation that boxes should not be empty
+                if (txtSFname.Text == "" || txtSLname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "")
+                {
+                    MessageBox.Show("Boxes should not be empty");
+                }
+                //adding assessment
+                else
+                {
+                    //adding assessment by setting the attributes of assessment class equal to the values in textboxes
+                    ass.Title = txtSFname.Text;
+                    ass.DateCreated = DateTime.Now.Date;
+                    ass.TotalMarks = Convert.ToInt32(txtScontact.Text);
+                    ass.TotalWeightage = Convert.ToInt32(txtSemail.Text);
+
+                    //making connection and adding assessment attributes in the Assessment table in database
+                    SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Assessment(Title,DateCreated,TotalMarks,TotalWeightage) VALUES (@title,@dateCreated,@totalMarks,@totalWeightage)", conn);
+                    cmd.Parameters.AddWithValue("@title", ass.Title);
+                    cmd.Parameters.AddWithValue("@dateCreated", ass.DateCreated);
+                    cmd.Parameters.AddWithValue("@totalMarks", ass.TotalMarks);
+                    cmd.Parameters.AddWithValue("@totalWeightage", ass.TotalWeightage);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    //show Assessment's list
+                    ViewAssessment frm = new ViewAssessment();
+                    this.Hide();
+                    frm.Show();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //adding assessment by setting the attributes of assessment class equal to the values in textboxes
-                ass.Title = txtSFname.Text;
-                ass.DateCreated = DateTime.Now.Date;
-                ass.TotalMarks = Convert.ToInt32(txtScontact.Text);
-                ass.TotalWeightage = Convert.ToInt32(txtSemail.Text);
-
-                //making connection and adding assessment attributes in the Assessment table in database
-                SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand("INSERT INTO Assessment(Title,DateCreated,TotalMarks,TotalWeightage) VALUES (@title,@dateCreated,@totalMarks,@totalWeightage)", conn);
-                cmd.Parameters.AddWithValue("@title", ass.Title);
-                cmd.Parameters.AddWithValue("@dateCreated", ass.DateCreated);
-                cmd.Parameters.AddWithValue("@totalMarks", ass.TotalMarks);
-                cmd.Parameters.AddWithValue("@totalWeightage", ass.TotalWeightage);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-
-                //show students list
-                ViewAssessment frm = new ViewAssessment();
-                this.Hide();
-                frm.Show();
+                MessageBox.Show(ex.Message);
             }
         }
 
         /// <summary>
-        /// show fixed datetime in date created box
+        /// show fixed datetime in dateCreated box
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

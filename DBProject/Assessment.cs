@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBProject
 {
+    /// <summary>
+    /// This class of Assessment contains specific Attributes according to the database Assessment table
+    /// </summary>
     class Assessment
     {
         private int id;

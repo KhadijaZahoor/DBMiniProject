@@ -82,72 +82,79 @@ namespace DBProject
         /// <param name="e"></param>
         private void btnEditS_Click(object sender, EventArgs e)
         {
-            bool condition = true;
-            if (txtSFname.Text == "" || txtSLname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "" || txtSRno.Text == "" || txtSStatus.Text == "")
+            try
             {
-                MessageBox.Show("Boxes should not be empty");
-                condition = false;
-            }
-            else
-            {
-                try
+                bool condition = true;
+                if (txtSFname.Text == "" || txtSLname.Text == "" || txtScontact.Text == "" || txtSemail.Text == "" || txtSRno.Text == "" || txtSStatus.Text == "")
                 {
-                    std.FirstName = txtSFname.Text;
-                }
-                catch (Exception)
-                {
+                    MessageBox.Show("Boxes should not be empty");
                     condition = false;
-                    MessageBox.Show("First Name should be in alphabets");
                 }
-                try
+                else
                 {
-                    std.LastName = txtSLname.Text;
-                }
-                catch (Exception)
-                {
-                    condition = false;
-                    MessageBox.Show("Last Name should be in alphabets");
-                }
-                try
-                {
-                    std.Email = txtSemail.Text;
-                }
-                catch (Exception)
-                {
-                    condition = false;
-                    MessageBox.Show("Email cannot contian spaces");
-                }
-            }
-
-            if (ViewStudent.id != null && condition == true)
-            {
-                std.FirstName = txtSFname.Text;
-                std.LastName = txtSLname.Text;
-                std.Contact = txtScontact.Text;
-                std.Email = txtSemail.Text;
-                std.RegistrationNo = txtSRno.Text;
-
-                //getting values from lookUp table in database
-                SqlDataReader status = DataConnection.get_instance().Getdata("SELECT * FROM Lookup");
-
-                //check the values in textbox with lookup table name column an assign specific id accordingly
-                while (status.Read())
-                {
-                    if (status[1].ToString() == txtSStatus.Text)
+                    try
                     {
-                        std.Status = Convert.ToInt32(status[0]);
+                        std.FirstName = txtSFname.Text;
+                    }
+                    catch (Exception)
+                    {
+                        condition = false;
+                        MessageBox.Show("First Name should be in alphabets");
+                    }
+                    try
+                    {
+                        std.LastName = txtSLname.Text;
+                    }
+                    catch (Exception)
+                    {
+                        condition = false;
+                        MessageBox.Show("Last Name should be in alphabets");
+                    }
+                    try
+                    {
+                        std.Email = txtSemail.Text;
+                    }
+                    catch (Exception)
+                    {
+                        condition = false;
+                        MessageBox.Show("Email cannot contian spaces");
                     }
                 }
 
-                //Update the data of the student
-                string cmd = string.Format("UPDATE Student SET FirstName='{0}',LastName='{1}',Contact='{2}',Email='{3}',RegistrationNumber='{4}',Status='{5}' WHERE Id='{6}'", std.FirstName, std.LastName, std.Contact.ToString(), std.Email, std.RegistrationNo, std.Status, ViewStudent.id);
-                int rows = DataConnection.get_instance().Executequery(cmd);
-                MessageBox.Show(String.Format("{0} rows affected", rows));
-                MessageBox.Show("Student Edited Successfully!");
-                //move to view student form
-                this.Hide();
-                ViewStudent vs = new ViewStudent();
-                vs.Show();
+                if (ViewStudent.id != null && condition == true)
+                {
+                    std.FirstName = txtSFname.Text;
+                    std.LastName = txtSLname.Text;
+                    std.Contact = txtScontact.Text;
+                    std.Email = txtSemail.Text;
+                    std.RegistrationNo = txtSRno.Text;
+
+                    //getting values from lookUp table in database
+                    SqlDataReader status = DataConnection.get_instance().Getdata("SELECT * FROM Lookup");
+
+                    //check the values in textbox with lookup table name column an assign specific id accordingly
+                    while (status.Read())
+                    {
+                        if (status[1].ToString() == txtSStatus.Text)
+                        {
+                            std.Status = Convert.ToInt32(status[0]);
+                        }
+                    }
+
+                    //Update the data of the student
+                    string cmd = string.Format("UPDATE Student SET FirstName='{0}',LastName='{1}',Contact='{2}',Email='{3}',RegistrationNumber='{4}',Status='{5}' WHERE Id='{6}'", std.FirstName, std.LastName, std.Contact.ToString(), std.Email, std.RegistrationNo, std.Status, ViewStudent.id);
+                    int rows = DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show(String.Format("{0} rows affected", rows));
+                    MessageBox.Show("Student Edited Successfully!");
+                    //move to view student form
+                    this.Hide();
+                    ViewStudent vs = new ViewStudent();
+                    vs.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

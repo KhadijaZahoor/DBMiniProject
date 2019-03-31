@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblSFname = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnfilter = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewrub = new System.Windows.Forms.DataGridView();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
@@ -44,8 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -56,19 +56,8 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::DBProject.Properties.Resources.education_logo_vector_11136361;
-            this.pictureBox1.Location = new System.Drawing.Point(605, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(145, 88);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // lblSFname
             // 
@@ -101,19 +90,20 @@
             this.tableLayoutPanel1.Controls.Add(this.panel5, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel6, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 140);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 51);
             this.tableLayoutPanel1.TabIndex = 17;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel6.Controls.Add(this.btnfilter);
-            this.panel6.Location = new System.Drawing.Point(537, 3);
+            this.panel6.Location = new System.Drawing.Point(538, 3);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(179, 45);
             this.panel6.TabIndex = 28;
@@ -132,19 +122,35 @@
             this.btnfilter.UseVisualStyleBackColor = true;
             this.btnfilter.Click += new System.EventHandler(this.btnfilter_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(254, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(238, 20);
+            this.dateTimePicker1.TabIndex = 29;
+            // 
             // dataGridViewrub
             // 
             this.dataGridViewrub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridViewrub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewrub.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Status});
             this.dataGridViewrub.Location = new System.Drawing.Point(89, 3);
             this.dataGridViewrub.Name = "dataGridViewrub";
             this.dataGridViewrub.Size = new System.Drawing.Size(583, 223);
             this.dataGridViewrub.TabIndex = 2;
             // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.dataGridViewrub);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 191);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(753, 232);
@@ -167,7 +173,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(168, 36);
             this.button5.TabIndex = 23;
-            this.button5.Text = "Exit";
+            this.button5.Text = "Home";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -241,12 +247,17 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(753, 94);
             this.tableLayoutPanel3.TabIndex = 13;
             // 
-            // dateTimePicker1
+            // pictureBox1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(253, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(238, 20);
-            this.dateTimePicker1.TabIndex = 29;
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::DBProject.Properties.Resources.education_logo_vector_11136361;
+            this.pictureBox1.Location = new System.Drawing.Point(605, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(145, 88);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // ViewAttendance
             // 
@@ -261,7 +272,6 @@
             this.Name = "ViewAttendance";
             this.Text = "ViewAttendance";
             this.Load += new System.EventHandler(this.ViewAttendance_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -275,6 +285,7 @@
             this.panel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -298,5 +309,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

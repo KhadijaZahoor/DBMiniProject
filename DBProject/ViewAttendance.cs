@@ -18,6 +18,8 @@ namespace DBProject
             InitializeComponent();
         }
 
+        
+        //attribute to store attendance id
         private static int id;
 
         private void ViewAttendance_Load(object sender, EventArgs e)
@@ -25,44 +27,55 @@ namespace DBProject
 
         }
 
+        /// <summary>
+        /// filtering the attendance accordind to attendance date and show filtered list in dataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnfilter_Click(object sender, EventArgs e)
         {
+            //match the date in class attendance table and store attendance id
             SqlDataReader att = DataConnection.get_instance().Getdata("SELECT * FROM ClassAttendance");
             while (att.Read())
             {
                 if (dateTimePicker1.Value.Date.ToString() == att[1].ToString())
                 {
                     id = Convert.ToInt32(att[0]);
-                    SqlDataReader reader = DataConnection.get_instance().Getdata(string.Format("SELECT FirstName , LastName , RegistrationNumber , AttendanceId , AttendanceStatus FROM StudentAttendance a JOIN Student s ON a.StudentId = s.Id WHERE a.AttendanceId='{0}'", id));
-                    BindingSource s = new BindingSource();
-                    s.DataSource = reader;
-                    dataGridViewrub.DataSource = s;
+                    
 
                 }
             }
-            DataGridViewColumn c = new DataGridViewTextBoxColumn();
-            c.HeaderText = "Status";
-            int colInd = dataGridViewrub.Columns.Add(c);
+            //show the attributes of students and Student attendance with the help of join
+            SqlDataReader reader = DataConnection.get_instance().Getdata(string.Format("SELECT FirstName , LastName , RegistrationNumber , AttendanceId , AttendanceStatus FROM StudentAttendance a JOIN Student s ON a.StudentId = s.Id WHERE a.AttendanceId='{0}'", id));
+            BindingSource s = new BindingSource();
+            s.DataSource = reader;
+            dataGridViewrub.DataSource = s;
+
+            //show the attendance Status name with the help of id
             foreach (DataGridViewRow r in dataGridViewrub.Rows)
             {
-                if (r.Cells[4].FormattedValue.ToString() == "1")
+                if (r.Cells[5].FormattedValue.ToString() == "1")
                 {
-                    r.Cells[5].Value = "Present";
+                    r.Cells[0].Value = "Present";
                 }
-                if (r.Cells[4].FormattedValue.ToString() == "2")
+                if (r.Cells[5].FormattedValue.ToString() == "2")
                 {
-                    r.Cells[5].Value = "Absent";
+                    r.Cells[0].Value = "Absent";
                 }
-                if (r.Cells[4].FormattedValue.ToString() == "3")
+                if (r.Cells[5].FormattedValue.ToString() == "3")
                 {
-                    r.Cells[5].Value = "Leave";
+                    r.Cells[0].Value = "Leave";
                 }
-                if (r.Cells[4].FormattedValue.ToString() == "4")
+                if (r.Cells[5].FormattedValue.ToString() == "4")
                 {
-                    r.Cells[5].Value = "Late";
+                    r.Cells[0].Value = "Late";
                 }
             }
-            dataGridViewrub.Columns.RemoveAt(4);
+            //change the index of status text box in data grid view
+            dataGridViewrub.Columns["Status"].DisplayIndex = dataGridViewrub.ColumnCount - 1;
+
+            //remove the attendance status column
+            dataGridViewrub.Columns.RemoveAt(5);
         }
 
         /// <summary>
@@ -75,6 +88,11 @@ namespace DBProject
             MainPage m = new MainPage();
             this.Hide();
             m.Show();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

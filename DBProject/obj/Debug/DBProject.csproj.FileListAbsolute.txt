@@ -58,3 +58,9 @@ C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Deb
 C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.csproj.CoreCompileInputs.cache
 C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.exe
 C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.pdb
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.ActiveStudent.resources
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.Result.resources
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\bin\Debug\itextsharp.dll
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\bin\Debug\itextsharp.xml
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.pdfReports.resources
+C:\Users\Khadija Zahoor\Desktop\Final DB project\DBMiniProject\DBProject\obj\Debug\DBProject.csproj.CopyComplete

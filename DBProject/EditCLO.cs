@@ -54,31 +54,38 @@ namespace DBProject
         /// <param name="e"></param>
         private void btnEditS_Click(object sender, EventArgs e)
         {
-            if (ViewCLO.cid != null)
+            try
             {
-                if (txtSFname.Text == "")
+                if (ViewCLO.cid != null)
                 {
-                    MessageBox.Show("CLO Name should not be empty");
-                }
-                else
-                {
-                    clo.Name = txtSFname.Text;
-                    clo.DateUpdated = DateTime.Now;
+                    if (txtSFname.Text == "")
+                    {
+                        MessageBox.Show("CLO Name should not be empty");
+                    }
+                    else
+                    {
+                        clo.Name = txtSFname.Text;
+                        clo.DateUpdated = DateTime.Now;
 
-                    SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
-                    SqlCommand cmd = new SqlCommand("UPDATE Clo SET Name=@name , DateUpdated=@dateUpdated WHERE Id=@id", conn);
-                    cmd.Parameters.AddWithValue("@name", clo.Name);
-                    cmd.Parameters.AddWithValue("@dateUpdated", clo.DateUpdated);
-                    cmd.Parameters.AddWithValue("@id", ViewCLO.cid);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("CLO Edited Successfully!");
+                        SqlConnection conn = new SqlConnection("Data Source=HAIER-PC;Initial Catalog=ProjectB;Integrated Security=True");
+                        SqlCommand cmd = new SqlCommand("UPDATE Clo SET Name=@name , DateUpdated=@dateUpdated WHERE Id=@id", conn);
+                        cmd.Parameters.AddWithValue("@name", clo.Name);
+                        cmd.Parameters.AddWithValue("@dateUpdated", clo.DateUpdated);
+                        cmd.Parameters.AddWithValue("@id", ViewCLO.cid);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("CLO Edited Successfully!");
 
-                    this.Hide();
-                    ViewCLO vs = new ViewCLO();
-                    vs.Show();
+                        this.Hide();
+                        ViewCLO vs = new ViewCLO();
+                        vs.Show();
+                    }
+
                 }
-                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

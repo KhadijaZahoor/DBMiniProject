@@ -74,29 +74,57 @@ namespace DBProject
         /// <param name="e"></param>
         private void dataGridViewrub_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //When edit button is clicked in dataGridView then detailes to be edited are shown in the textbox
-            if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnEdit")
+            try
             {
-                DataGridViewRow edit = dataGridViewrub.Rows[e.RowIndex];
-                lId = edit.Cells[0].Value.ToString();
-                string det = edit.Cells[2].Value.ToString();
-                string de = edit.Cells[3].Value.ToString();
-                txtDetails.Text = det;
-                txtMLevel.Text = de;
-                n = true;
-            }
-            //Deleting RubricLevel when delete button is clicked in DataGridView
-            if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnDelete")
-            {
-                DataGridViewRow deletel = dataGridViewrub.Rows[e.RowIndex];
-                lId = deletel.Cells[0].Value.ToString();
-                MessageBox.Show("Are you sure you want to Permanently delete the specific Rubric Level?");
-                string cmd = string.Format("DELETE FROM RubricLevel WHERE Id='{0}'", Convert.ToInt32(lId));
-                DataConnection.get_instance().Executequery(cmd);
+                //When edit button is clicked in dataGridView then detailes to be edited are shown in the textbox
+                if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnEdit")
+                {
+                    DataGridViewRow edit = dataGridViewrub.Rows[e.RowIndex];
+                    lId = edit.Cells[0].Value.ToString();
+                    string det = edit.Cells[2].Value.ToString();
+                    string de = edit.Cells[3].Value.ToString();
+                    txtDetails.Text = det;
+                    txtMLevel.Text = de;
+                    n = true;
+                }
+                //Deleting RubricLevel when delete button is clicked in DataGridView
+                if (dataGridViewrub.Columns[e.ColumnIndex].Name == "btnDelete")
+                {
+                    DataGridViewRow deletel = dataGridViewrub.Rows[e.RowIndex];
+                    lId = deletel.Cells[0].Value.ToString();
+                    MessageBox.Show("Are you sure you want to Permanently delete the specific Rubric Level Its related result will also be deleted?");
 
-                ManageRubricLevels v = new ManageRubricLevels();
-                this.Hide();
-                v.Show();
+                    //Deleting Student Result realted to the Rubric level to be deleted
+                    SqlDataReader related = DataConnection.get_instance().Getdata(string.Format("SELECT * FROM StudentResult WHERE RubricMeasurementId={0}", lId));
+                    if (related != null)
+                    {
+                        while (related.Read())
+                        {
+                            int r;
+                            r = Convert.ToInt32(related.GetValue(2));
+                            if (r.ToString() == lId.ToString())
+                            {
+                                string cmd2 = string.Format("DELETE FROM StudentResult WHERE RubricMeasurementId='{0}'", r);
+                                int rows2 = DataConnection.get_instance().Executequery(cmd2);
+                                MessageBox.Show(String.Format("{0} rows affected", rows2));
+                                MessageBox.Show("Related Student Result Deleted");
+
+                            }
+                        }
+                    }
+
+                    string cmd = string.Format("DELETE FROM RubricLevel WHERE Id='{0}'", Convert.ToInt32(lId));
+                    DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show("Rubric Level Deleted");
+
+                    ManageRubricLevels v = new ManageRubricLevels();
+                    this.Hide();
+                    v.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -107,38 +135,45 @@ namespace DBProject
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtDetails.Text == "" || txtMLevel.Text == "")
+            try
             {
-                MessageBox.Show("Boxes should not be empty");
+                if (txtDetails.Text == "" || txtMLevel.Text == "")
+                {
+                    MessageBox.Show("Boxes should not be empty");
+                }
+                //adding new rubric level
+                else if (!n)
+                {
+                    r.RubricId = Convert.ToInt32(ManageRubric.rid);
+                    r.Details = txtDetails.Text;
+                    r.MeasurementLevel = Convert.ToInt32(txtMLevel.Text);
+
+                    string cmd = string.Format("INSERT RubricLevel(RubricId, Details , MeasurementLevel) VALUES('{0}','{1}','{2}')", r.RubricId, r.Details, r.MeasurementLevel);
+                    int rows = DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show(String.Format("{0} rows affected", rows));
+
+                    ManageRubricLevels frm = new ManageRubricLevels();
+                    this.Hide();
+                    frm.Show();
+                }
+                //Editing rubric level
+                else
+                {
+                    r.Details = txtDetails.Text;
+                    r.MeasurementLevel = Convert.ToInt32(txtMLevel.Text);
+
+                    string cmd = string.Format("UPDATE RubricLevel SET RubricId ='{0}' , Details='{1}', MeasurementLevel ='{2}' WHERE Id='{3}'", ManageRubric.rid, r.Details, r.MeasurementLevel, lId);
+                    int rows = DataConnection.get_instance().Executequery(cmd);
+                    MessageBox.Show(String.Format("{0} rows affected", rows));
+                    MessageBox.Show("Rubric Level Edited Successfully!");
+                    this.Hide();
+                    ManageRubricLevels vs = new ManageRubricLevels();
+                    vs.Show();
+                }
             }
-            //adding new rubric level
-            else if (!n )
+            catch (Exception ex)
             {
-                r.RubricId = Convert.ToInt32(ManageRubric.rid);
-                r.Details = txtDetails.Text;
-                r.MeasurementLevel = Convert.ToInt32(txtMLevel.Text);
-
-                string cmd = string.Format("INSERT RubricLevel(RubricId, Details , MeasurementLevel) VALUES('{0}','{1}','{2}')", r.RubricId , r.Details, r.MeasurementLevel);
-                int rows = DataConnection.get_instance().Executequery(cmd);
-                MessageBox.Show(String.Format("{0} rows affected", rows));
-
-                ManageRubricLevels frm = new ManageRubricLevels();
-                this.Hide();
-                frm.Show();
-            }
-            //Editing rubric level
-            else
-            {
-                r.Details = txtDetails.Text;
-                r.MeasurementLevel = Convert.ToInt32(txtMLevel.Text);
-
-                string cmd = string.Format("UPDATE RubricLevel SET RubricId ='{0}' , Details='{1}', MeasurementLevel ='{2}' WHERE Id='{3}'", ManageRubric.rid , r.Details, r.MeasurementLevel , lId);
-                int rows = DataConnection.get_instance().Executequery(cmd);
-                MessageBox.Show(String.Format("{0} rows affected", rows));
-                MessageBox.Show("Rubric Level Edited Successfully!");
-                this.Hide();
-                ManageRubricLevels vs = new ManageRubricLevels();
-                vs.Show();
+                MessageBox.Show(ex.Message);
             }
 
         }

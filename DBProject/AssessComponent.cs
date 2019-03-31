@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBProject
 {
+    /// <summary>
+    /// This class of Assessment Component contains specific Attributes according to the database AssessmentComponent table
+    /// </summary>
     class AssessComponent
     {
         private int id;
